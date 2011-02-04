@@ -1,0 +1,657 @@
+<html>
+<head>
+	<title>Minimalist for Google Calendar Options</title>
+	<link type="text/css" rel="stylesheet" href="css/options.css" />
+	<link type="text/css" rel="stylesheet" href="css/picker/colorpicker.css" />
+	<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="js/options.js"></script>
+	<script type="text/javascript" src="js/picker/colorpicker.js"></script>
+	<script type="text/javascript" src="js/picker/eye.js"></script>
+	<script type="text/javascript" src="js/picker/utils.js"></script>
+	<script type="text/javascript">
+		//---- COLOR PICKERS ----//
+		(function($){
+			var initLayout = function() {
+				// var bottom = localStorage["BTNbottom"];
+				// var top = localStorage["BTNtop"];
+				$('#BTNcolor').ColorPicker({
+					color: localStorage["BTNcolor"],
+					onShow: function (colpkr) {
+						$(colpkr).fadeIn(500);
+						return false;
+					},
+					onHide: function (colpkr) {
+						$(colpkr).fadeOut(500);
+						return false;
+					},
+					onChange: function (hsb, hex, rgb) {
+						$('#BTNcolor div').css('backgroundColor', '#' + hex);
+						$('#testButton').css('color', '#' + hex);
+						localStorage["BTNcolor"] = "#" + hex;
+					}
+				});
+				$('#BTNborder').ColorPicker({
+					color: localStorage["BTNborder"],
+					onShow: function (colpkr) {
+						$(colpkr).fadeIn(500);
+						return false;
+					},
+					onHide: function (colpkr) {
+						$(colpkr).fadeOut(500);
+						return false;
+					},
+					onChange: function (hsb, hex, rgb) {
+						$('#BTNborder div').css('backgroundColor', '#' + hex);
+						$('#testButton').css('border-color', '#' + hex);
+						localStorage["BTNborder"] = "#" + hex;
+					}
+				});
+				$('#BTNbottom').ColorPicker({
+					color: localStorage["BTNbottom"],
+					onShow: function (colpkr) {
+						$(colpkr).fadeIn(500);
+						return false;
+					},
+					onHide: function (colpkr) {
+						$(colpkr).fadeOut(500);
+						return false;
+					},
+					onChange: function (hsb, hex, rgb) {
+						$('#BTNbottom div').css('backgroundColor', '#' + hex);
+						$('#testButton').css('background', '-webkit-gradient(linear,0% 40%,0% 70%,from(#' + hex + '),to(' + top + '))');
+						bottom = "#" + hex;
+						localStorage["BTNbottom"] = "#" + hex;
+					}
+				});
+				$('#BTNtop').ColorPicker({
+					color: localStorage["BTNtop"],
+					onShow: function (colpkr) {
+						$(colpkr).fadeIn(500);
+						return false;
+					},
+					onHide: function (colpkr) {
+						$(colpkr).fadeOut(500);
+						return false;
+					},
+					onChange: function (hsb, hex, rgb) {
+						$('#BTNtop div').css('backgroundColor', '#' + hex);
+						$('#testButton').css('background', '-webkit-gradient(linear,0% 40%,0% 70%,from(' + bottom + '),to(#' + hex + '))');
+						top = "#" + hex;
+						localStorage["BTNtop"] = "#" + hex;
+					}
+				});
+			};
+			EYE.register(initLayout, 'init');
+		})(jQuery)
+		//---- END COLOR PICKERS ----//
+	</script>
+	<script type="text/javascript">
+		//---- GOOGLE WEB FONT LOADER ----//
+		WebFontConfig = {
+			google: { families: [ 'Raleway:100' ] }
+		};
+		(function() {
+			var wf = document.createElement('script');
+				wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+					'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+				wf.type = 'text/javascript';
+				wf.async = 'true';
+			var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(wf, s);
+		})();
+		//---- END GOOGLE WEB FONT LOADER ----//
+	</script>
+</head>
+<body>
+<div id="OPTwrap">
+	<div id="OPTside">
+		<h1>Minimalist</h1>
+		<!-- SYSTEM MESSAGES -->
+		<div id="announce" style="display: block;">
+			<strong>Subtract until it breaks</strong><br />The way of the minimalist
+		</div>
+		<div id="refresh">
+			<strong>Settings saved!</strong><br /><a href="#" onclick="javascript:chrome.extension.sendRequest({action: 'reload'},function(){});">Refresh Google Calender to apply</a>
+		</div>
+		<div id="refreshEI">
+			<strong>Import successful!</strong><br /><a href="#" onclick="javascript:chrome.extension.sendRequest({action: 'reload'},function(){});">Refresh Google Calender to apply changes</a>
+		</div>
+		<div id="easterEgg_on">
+			<strong>Easter Egg enabled!</strong><br />Refresh Voice &amp; Reader
+		</div>
+		<div id="easterEgg_off">
+			<strong>Easter Egg disabled...</strong><br />
+		</div>
+		<!-- END SYSTEM MESSAGES -->
+		<!-- NAVIGATION -->
+		<ul>
+			<li><a href="#gen" class="" id="gen" onclick="navigate('gen')">General</a></li>
+			<li><a href="#goo" class="" id="goo" onclick="navigate('goo')">Google Bar</a></li>
+			<li><a href="#hea" class="" id="hea" onclick="navigate('hea')">Header</a></li>
+			<li><a href="#mai" class="" id="mai" onclick="navigate('mai')">Main</a></li>
+			<li><a href="#gat" class="" id="gat" onclick="navigate('gat')">Navigation</a></li>
+			<li>&nbsp;</li>
+			<li>&nbsp;</li>
+			<li><a href="#imp" class="" id="imp" onclick="navigate('imp')">Import/Export</a></li>
+			<li><a href="#mor" class="" id="mor" onclick="navigate('mor')">More</a></li>
+			<li><a href="#nge" class="" id="nge" onclick="navigate('nge')">Changes</a></li>
+			<li><a href="#sup" class="" id="sup" onclick="navigate('sup')">Support</a></li>
+			<li><a href="#abo" class="" id="abo" onclick="navigate('abo')">About</a></li>
+		</ul>
+		<!-- END NAVIGATION -->
+	</div>
+	<div class="OPTmain" id="OPTgen">
+		<h1 class="dark">Google Calendar <span>| general</span></h1>
+		<section>
+			<h3>Options Icon</h3>
+			<div>
+				<input type="checkbox" id="mcicon" />
+					&nbsp;<label for="mcicon" title="">Hide Minimalist for Google Calendar options icon</label><br />
+					<span class="note"><strong>NOT RECOMMENDED:</strong> Only shows up in Google Calendar</span>
+			</div>
+		</section>
+		<section>
+			<h3>Buttons</h3>
+				<div>
+					<input type="checkbox" id="BTN" />
+						&nbsp;<label for="BTN" title="Click color to change">Enable custom buttons</label><div class="J-Zh-I" id="testButton" style="-webkit-user-select: none; ">Test button</div>
+						<table>
+							<tr>
+								<td>Font</td>
+								<td><div c id="BTNcolor"><div id="BTNcolorSUB" style="background-color: #000000;"></div></div></td>
+							</tr>
+							<tr>
+								<td>Border</td>
+								<td><div c id="BTNborder"><div id="BTNborderSUB" style="background-color: #bbbbbb;"></div></div></td>
+							</tr>
+							<tr>
+								<td>Top</td>
+								<td><div c id="BTNbottom"><div id="BTNbottomSUB" style="background-color: #f9f9f9;"></div></div></td>
+							</tr>
+							<tr>
+								<td>Bottom</td>
+								<td><div c id="BTNtop"><div id="BTNtopSUB" style="background-color: #e3e3e3;"></div></div></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="button" value="Reset" onClick="cButtonReset()" /></td>
+							</tr>
+						</table>
+				</div>
+		</section>
+		<section>
+			<h3>Fields &amp; Input</h3>
+			<div>
+				<input type="checkbox" id="corners" />
+					&nbsp;<label for="corners" title="">Round corners</label><br />
+			</div>
+		</section>
+		<section>
+			<h3>Animate Transitions</h3>
+			<div>
+				<input type="checkbox" id="trans" />
+					&nbsp;<label for="trans" title="">Show transition animations</label><br />
+					<span class="note">Very subtle. Not possible for all transitions.</span><br />
+					<!-- <span class="note"><strong>Note:</strong> May decrease performance slightly on slower machines</span> -->
+			</div>
+		</section>
+		<section>
+			<h3>Custom CSS</h3>
+			<div>
+				<input type="checkbox" id="customCSS" />
+					&nbsp;<label for="customCSS" title="">Use custom CSS</label><br />
+					<textarea id="customCSSval" rows="5" cols="40" style="margin-left: 25px;"></textarea>
+					<br />
+					<span class="note">Don't know CSS? <a href="https://groups.google.com/forum/?hl=en#!forum/minimalist-google-calendar" target="_blank">Ask questions and see examples here</a></span>
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPTgoo">
+		<h1 class="dark">Google Calendar <span>| google bar</span></h1>
+		<section>
+			<h3>Hide All</h3>
+			<div>
+				<input type="checkbox" id="gbarH" />
+					&nbsp;<label for="gbarH" title="">Hide Google Bar</label><br />
+					<span class="note">[ \ ] or click blank stripe to toggle</span><br /><br />
+				<input type="checkbox" id="gbarO" />
+					&nbsp;<label for="gbarO" title="">Make invisible until mouseover</label><br />
+					<span class="note">Note: This will simplify appearance, not save pixels</span>
+			</div>
+		</section>
+		<section>
+			<h3>Appearance</h3>
+			<div>
+				<input type="checkbox" id="gbarB" />
+					&nbsp;<label for="gbarB" title="">Hide Background &amp; Border</label><br />
+			</div>
+		</section>
+		<section>
+			<h3>Google Links</h3>
+			<div>
+				<input type="checkbox" id="gbar" />
+					&nbsp;<label for="gbar" title="">Hide Google links</label><br />
+				<input type="checkbox" id="cbar" />
+					&nbsp;<label for="cbar" title="">Enable custom links</label><br />
+				<span class="note"><a href="#" id="expandClinks" onclick="javascript:document.getElementById('cLinks').setAttribute('class','indent expanded');document.getElementById('expandClinks').setAttribute('style','opacity: 0;');">Show input table</a></span>
+				<div id="cLinks" class="indent compressed">
+					<br />
+					Choose link text, link location, and link target *.<br />
+					If you want less links, just leave rows blank.<br /><br />
+					<input type="text" id="c_n_1" size="6" class="field" value="Gmail" />
+					<input type="text" id="c_u_1" size="24" class="field" value="http://mail.google.com" style="margin-left: 1px;" />
+					<input type="text" id="c_t_1" size="3" class="field" value="_blank" style="margin-left: 1px;" /><br />
+					<input type="text" id="c_n_2" size="6" class="field" value="Calendar" />
+					<input type="text" id="c_u_2" size="24" class="field" value="http://www.google.com/calendar" style="margin-left: 1px;" />
+					<input type="text" id="c_t_2" size="3" class="field" value="_blank" style="margin-left: 1px;" /><br />
+					<input type="text" id="c_n_3" size="6" class="field" value="Documents" />
+					<input type="text" id="c_u_3" size="24" class="field" value="http://docs.google.com" style="margin-left: 1px;" />
+					<input type="text" id="c_t_3" size="3" class="field" value="_blank" style="margin-left: 1px;" /><br />
+					<input type="text" id="c_n_4" size="6" class="field" value="Reader" />
+					<input type="text" id="c_u_4" size="24" class="field" value="http://www.google.com/reader" style="margin-left: 1px;" />
+					<input type="text" id="c_t_4" size="3" class="field" value="_blank" style="margin-left: 1px;" /><br />
+					<input type="text" id="c_n_5" size="6" class="field" value="Photos" />
+					<input type="text" id="c_u_5" size="24" class="field" value="http://picasaweb.google.com" style="margin-left: 1px;" />
+					<input type="text" id="c_t_5" size="3" class="field" value="_blank" style="margin-left: 1px;" /><br />
+					<input type="text" id="c_n_6" size="6" class="field" value="Web" />
+					<input type="text" id="c_u_6" size="24" class="field" value="http://www.google.com" style="margin-left: 1px;" />
+					<input type="text" id="c_t_6" size="3" class="field" value="_blank" style="margin-left: 1px;" /><br />
+					<input type="checkbox" id="cbarM" />
+					&nbsp;<label for="cbarM" title="">Show "more" dropdown</label><br />
+					<span class="note">Moves original Google Links into the more menu</span><br />
+					<br />
+					* "_blank" for new window, "_top" for this window
+				</div>
+			</div>
+		</section>
+		<section>
+			<h3>Google User Bar</h3>
+			<div>
+				<input type="checkbox" id="user" />
+					&nbsp;<label for="user" title="">Hide signed in</label><br />
+				<input type="checkbox" id="labs" />
+					&nbsp;<label for="labs" title="">Hide Labs icon</label><br />
+				<input type="checkbox" id="settings" />
+					&nbsp;<label for="settings" title="">Hide Settings link</label><br />
+				<input type="checkbox" id="help" />
+					&nbsp;<label for="help" title="">Hide Help link</label><br />
+				<input type="checkbox" id="out" />
+					&nbsp;<label for="out" title="">Hide Sign out link</label><br />
+					<span class="note"><strong>WARNING:</strong> if you check this box you will have to toggle M.C.</span>
+					<span class="note">off with the URL bar icon to sign out</span>
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPThea">
+		<h1 class="dark">Google Calendar <span>| header</span></h1>
+		<section>
+			<h3>Hide All</h3>
+			<div>
+				<input type="checkbox" id="header" />
+					&nbsp;<label for="header" title="">Hide header</label><br />
+					<span class="note">Click blank stripe to toggle, [ / ] to focus search, [ \ ] to toggle</span>
+			</div>
+		</section>
+		<section>
+			<h3>Logo</h3>
+			<div>
+				<input type="checkbox" id="logoH" />
+					&nbsp;<label for="logoH" title="">Hide logo</label><br />
+				<input type="checkbox" id="logo" />
+					&nbsp;<label for="logo" title="">Enable custom logo</label><br />
+					<input type="text" id="logoSRC" size="40" class="field" value="http://www.example.com/image.jpg" /><br />
+					<span class="note">156x30px max. Input via URL or Convert to Base64</span><br />
+					<span class="note">Base64 conversion <a href="http://www.greywyvern.com/code/php/binary2base64" target="_blank">via URL</a> or <a href="http://www.opinionatedgeek.com/dotnet/tools/base64encode/" target="_blank">via upload</a></span>
+			</div>
+		</section>
+		<section>
+			<h3>Search</h3>
+			<div>
+				<input type="checkbox" id="s_all" />
+					&nbsp;<label for="s_all" title="">Hide all search</label><br />
+				<input type="checkbox" id="s_button" />
+					&nbsp;<label for="s_button" title="">Hide search button</label><br />
+				<input type="checkbox" id="s_link" />
+					&nbsp;<label for="s_link" title="">Hide search options</label><br />
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPTmai">
+		<h1 class="dark">Google Calendar <span>| main</span></h1>
+		<section>
+			<h3>Toolbar</h3>
+			<div>
+				<input type="checkbox" id="t_top" />
+					&nbsp;<label for="t_top" title="">Hide top toolbar</label><br />
+				<br />
+				<input type="checkbox" id="n_create" />
+					&nbsp;<label for="n_create" title="">Hide Create Event button</label><br />
+				<input type="checkbox" id="n_quick" />
+					&nbsp;<label for="n_quick" title="">Hide Quick Add link</label><br />
+				<br />
+				<input type="checkbox" id="t_today" />
+					&nbsp;<label for="t_today" title="">Hide Today button</label><br />
+				<input type="checkbox" id="t_nav" />
+					&nbsp;<label for="t_nav" title="">Hide navigation arrows</label><br />
+				<input type="checkbox" id="t_date" />
+					&nbsp;<label for="t_date" title="">Hide current date range</label><br />
+				<br />
+				<input type="checkbox" id="t_printI" />
+					&nbsp;<label for="t_printI" title="">Hide print icon</label><br />
+				<input type="checkbox" id="t_printL" />
+					&nbsp;<label for="t_printL" title="">Hide print link</label><br />
+				<input type="checkbox" id="t_refresh" />
+					&nbsp;<label for="t_refresh" title="">Hide Refresh</label><br />
+				<br />
+				<input type="checkbox" id="t_v1" />
+					&nbsp;<label for="t_v1" title="">Hide Day button</label><br />
+				<input type="checkbox" id="t_v2" />
+					&nbsp;<label for="t_v2" title="">Hide Week button</label><br />
+				<input type="checkbox" id="t_v3" />
+					&nbsp;<label for="t_v3" title="">Hide Month button</label><br />
+				<input type="checkbox" id="t_v4" />
+					&nbsp;<label for="t_v4" title="">Hide 7 Days button</label><br />
+				<input type="checkbox" id="t_v5" />
+					&nbsp;<label for="t_v5" title="">Hide Agenda button</label><br />
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPTgat">
+		<h1 class="dark">Google Calendar <span>| navigation</span></h1>
+		<section>
+			<h3>Hide All</h3>
+			<div>
+				<input type="checkbox" id="nav" />
+					&nbsp;<label for="nav" title="">Hide navigation</label><br />
+						<span class="note">[ ` ] tilde key or click blank stripe to toggle</span><br /><br />
+				<input type="checkbox" id="navO" />
+					&nbsp;<label for="navO" title="">Expand nav on mouseover</label><br />
+			</div>
+		</section>
+		<section>
+			<h3>Custom width</h3>
+			<div>
+				<!-- <input type="checkbox" id="navWC" />
+					&nbsp;<label for="navWC" title="">Enable custom width</label><br /> -->
+				<input type="text" id="navW" size="3" class="field" value="180" /> pixels<br />
+				<span class="note">Default is 180</span>
+			</div>
+		</section>
+		<section>
+			<h3>Overview</h3>
+			<div>
+				<input type="checkbox" id="n_cal" />
+					&nbsp;<label for="n_cal" title="">Hide mini-calendar</label><br />
+			</div>
+		</section>
+		<section>
+			<h3>My calendars</h3>
+			<div>
+				<input type="checkbox" id="n_mine" />
+					&nbsp;<label for="n_mine" title="">Hide My Calendars</label><br />
+				<input type="checkbox" id="n_linksM" />
+					&nbsp;<label for="n_linksM" title="">Hide "Add | Settings" link</label><br />
+			</div>
+		</section>
+		<section>
+			<h3>Other calendars</h3>
+			<div>
+				<input type="checkbox" id="n_other" />
+					&nbsp;<label for="n_other" title="">Hide Other Calendars</label><br />
+				<input type="checkbox" id="n_add" />
+					&nbsp;<label for="n_add" title="">Hide "Add a friend's calendar"</label><br />
+				<input type="checkbox" id="n_linksO" />
+					&nbsp;<label for="n_linksO" title="">Hide "Add | Settings" link</label><br />
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPTimp">
+		<h1 class="dark">Google Calendar | <span>import/export</span></h1>
+		<section>
+			<h3>Import/Export</h3>
+			<div>
+				To transfer settings, click "Export", copy everything, paste it back in another browser and click "Import".
+				<br /><br />
+				<form name="EI">
+				<textarea id="EImain" rows="5" cols="40"></textarea>
+				<input type="button" value="Export" onClick="export('EImain')" /><input type="button" value="Import" onClick="import('EImain')" />
+				</form>
+			</div>
+		</section>
+		<section>
+			<h3>Presets</h3>
+			<div>
+				<strong>Warning:</strong> clicking a preset will replace your current settings. Your current settings will be saved to "Custom 3", overriding it's contents.<br /><br />
+				<div style="display: none;">
+					<textarea id="EI_0" rows="5" cols="40"></textarea>
+					<textarea id="EI_1" rows="5" cols="40"></textarea>
+					<textarea id="EI_2" rows="5" cols="40"></textarea>
+					<textarea id="EI_3" rows="5" cols="40"></textarea>
+				</div>
+				<input type="button" value="None" onClick="javascript:export('EIC_3');import('EI_0');;" />
+				<input type="button" value="Basics" onClick="javascript:export('EIC_3');import('EI_1');;" />
+				<input type="button" value="Simple" onClick="javascript:export('EIC_3');import('EI_2');;" />
+				<input type="button" value="Crazy" onClick="javascript:export('EIC_3');import('EI_3');;" /><br /><br />
+				<table>
+					<tr>
+						<td><input type="button" value="Custom 1" onClick="import('EIC_1')"/></td>
+						<td><textarea id="EIC_1" rows="1" cols="26"></textarea></td>
+					</tr>
+					<tr>
+						<td><input type="button" value="Custom 2" onClick="import('EIC_2')" /></td>
+						<td><textarea id="EIC_2" rows="1" cols="26"></textarea></td>
+					</tr>
+					<tr>
+						<td><input type="button" value="Custom 3" onClick="import('EIC_3')" /></td>
+						<td><textarea id="EIC_3" rows="1" cols="26"></textarea></td>
+					</tr>
+				</table>
+			</div>
+		</section>
+		<section>
+			<h3>Full Reset</h3>
+			<div>
+				If you are having problems and just want to start fresh, use this button. <strong>It will clear all local settings and reset them to Google Calendar's default.</strong>
+				<br /><br />
+				<input type="button" class="red" value="Reset All" onClick="javascript:localStorage.clear();import('EI_0');;" />
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPTmor">
+		<h1 class="dark">Google Calendar <span onclick="easterEgg()" style="cursor:pointer;">| more</span></h1>
+		<section>
+			<h3>Extensions</h3>
+			<div>
+				<ul>
+					<li><a href="">Minimalist for Gmail</a>: Individually hide almost 100 interface elements, custom logos and row highlighting, favicon/desktop notifier, and more...
+						<ul>
+							<li><a href="http://www.anselsantosa.com/sites/MinimalistGmail/options.html" target="_blank">See the full options page</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section>
+			<h3>Settings</h3>
+			<div>
+				<ul>
+					<li>Google Calendar Labs</a>: great stuff in here, check it out
+						<ul>
+							<li>Caution: some labs features conflict with Minimalst for Google Calender. If you point them out I'll write exceptions for them.</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section>
+			<h3>Bugs &amp; Ideas</h3>
+			<div>
+				I'm always looking for new ideas and bugs to fix. I respond in the Issue Tracker, email, and Twitter within an hour if I'm awake [UTC-8].<br /><br />
+				<ul>
+					<li>Submit a bug or feature request: <a href="http://code.google.com/p/minimalist-google-calendar/issues" target="_blank">Official Issues Tracker</a></li>
+					<li>Have immediate questions?
+						<ul>
+							<li>Ping me on Twitter: <a href="http://www.twitter.com/anstosa" target="_blank">@anstosa</a></li>
+							<li>Email me: <a href="https://mail.google.com/mail/?view=cm&tf=0&to=ansel@anselsantosa.com&fs=1" target="_blank">ansel@anselsantosa.com</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPTnge">
+		<h1 class="dark">Google Calendar <span>| changes</span></h1>
+		<section id="updated" style="display: none;">
+			<h3>Update</h3>
+			<div>
+				Minimalist for Google Calendar has been updated!
+			</div>
+		</section>
+		<section>
+			<h3>Announcements</h3>
+			<div>
+				Minimalist Gmail has exploded overnight thanks to <a href="http://lifehacker.com/5741771/minimalist-gmail-is-the-best-gmail-tweaker-for-chrome-yet" target="_blank">Lifehacker</a>.<br />
+				The improvements and fixes in this release are all thanks the detailed bug reports and ideas from new users. Thanks!
+			</div>
+		</section>
+		<!-- <section>
+			<h3>What's new</h3>
+			<div>
+				Full changelog on <a href="http://code.google.com/p/minimalist-google-calendar/#CHANGELOG" target="_blank">Google Code</a><br /><br />
+				<strong>General</strong>
+				<ul>
+					<li></li>
+				</ul>
+				<strong>Google Bar</strong>
+				<ul>
+					<li></li>
+				</ul>
+				<strong>Header</strong>
+				<ul>
+					<li></li>
+				</ul>
+				<strong>Main</strong>
+				<ul>
+					<li></li>
+				</ul>
+				<strong>Navigation</strong>
+				<ul>
+					<li></li>
+				</ul>
+				<strong>Backend/Options page</strong>
+				<ul>
+					<li></li>
+					<li><a href="http://code.google.com/p/minimalist-google-calendar/#CHANGELOG" target="_blank"><strong>bugfixes</strong></a></li>
+				</ul>
+			</div>
+		</section> -->
+		<section>
+			<h3>Rate &amp; Review</h3>
+			<div>
+				Like Minimalist for Google Calendar?<br />Please <a href="" target="_blank">rate and review it in the Web Store!</a>
+			</div>
+		</section>
+		<section>
+			<h3>Donate</h3>
+			<div>
+				<p>This is a personal project and I am a full-time student, please <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RVCM5TZRYBK8">support me by donating</a> so I can keep Minimalist Gmail up to date and competitive.</p>
+				<br />
+				<a class="button" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C5GNE665F894E" target="_blank">Donate</a>
+			</div>
+		</section>
+		<section>
+			<h3>Bugs &amp; Ideas</h3>
+			<div>
+				I'm always looking for new ideas and bugs to fix. I respond in the Issue Tracker, email, and Twitter within an hour if I'm awake [UTC-8].<br /><br />
+				<ul>
+					<li>Submit a bug or feature request: <a href="http://code.google.com/p/minimalist-google-calendar/issues" target="_blank">Official Issues Tracker</a></li>
+					<li>Have immediate questions?
+						<ul>
+							<li>Ping me on Twitter: <a href="http://www.twitter.com/anstosa" target="_blank">@anstosa</a></li>
+							<li>Email me: <a href="https://mail.google.com/mail/?view=cm&tf=0&to=ansel@anselsantosa.com&fs=1" target="_blank">ansel@anselsantosa.com</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPTabo">
+		<h1 class="dark">Google Calendar <span>| about</span></h1>
+		<section>
+			<h3>Credits</h3>
+			<div>
+				<p>My name is <a href="http://www.anselsantosa.com">Ansel Santosa</a> [<a href="http://www.twitter.com/anstosa" target="_blank">@anstosa</a>]. I'm an Informatics student at the University of Washington in Seattle studying to to a UX Designer.<br />
+				<br />
+				I created <a href="https://chrome.google.com/webstore/detail/oddhbkghjoccbljmagcgoklbfdjeiinb" target="_blank">Minimalist for Gmail</a> because none of the others on the market would cut it for me. It was just a handful of personal scripts for a while. But I recently decided to polish and publish.<br />
+				<br />
+				Minimalist for Google Calendar is just the second in what I hope will become a suite of Google webapp customizers
+			</div>
+		</section>
+		<section>
+			<h3>Rate &amp; Review</h3>
+			<div>
+				Like Minimalist for Google Calendar?<br />Please <a href="" target="_blank">rate and review it in the Web Store!</a>
+			</div>
+		</section>
+		<section>
+			<h3>Donate</h3>
+			<div>
+				<p>This is a personal project and I am a full-time student, please <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RVCM5TZRYBK8">support me by donating</a> so I can keep Minimalist Gmail up to date and competitive.</p>
+				<br />
+				<a class="button" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RVCM5TZRYBK8" target="_blank">Donate</a>
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPTsup">
+		<h1 class="dark">Google Calendar <span>| support</span></h1>
+		<section>
+			<h3>Support Page</h3>
+			<div>
+				Try the <a href="http://code.google.com/p/minimalist-google-calendar/wiki/Support" target="_blank">official support page</a> first. Otherwise, see below:
+			</div>
+		</section>
+		<section>
+			<h3>Bugs &amp; Ideas</h3>
+			<div>
+				I'm always looking for new ideas and bugs to fix. I respond in the Issue Tracker, email, and Twitter within an hour if I'm awake [UTC-8].<br /><br />
+				<ul>
+					<li>Submit a bug or feature request: <a href="http://code.google.com/p/minimalist-google-calendar/issues/list" target="_blank">Official Issues Tracker</a></li>
+					<li>Have immediate questions?
+						<ul>
+							<li>Ping me on Twitter: <a href="http://www.twitter.com/anstosa" target="_blank">@anstosa</a></li>
+							<li>Email me: <a href="https://mail.google.com/mail/?view=cm&tf=0&to=ansel@anselsantosa.com&fs=1" target="_blank">ansel@anselsantosa.com</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/javascript">
+	//---- PROCESS URL HASHES ----//
+	var hash = window.location.hash.substr(1);
+	document.getElementById("refresh").setAttribute("style","");
+
+	if (hash == "update") {
+		document.getElementById("nge").setAttribute("class", "current");
+		document.getElementById("OPTnge").setAttribute("style", "display: block;");
+		document.getElementById("updated").setAttribute("style", "");
+		last = "nge";
+	} else if (hash == "imps") {
+		document.getElementById("imp").setAttribute("class", "current");
+		document.getElementById("OPTimp").setAttribute("style", "display: block;");
+		$("#announce").attr("style", "");
+		document.getElementById("refreshEI").setAttribute("style","display: block;");
+		last = "imp";
+	} else if (hash == null || hash == "") {
+		document.getElementById("gen").setAttribute("class", "current");
+		document.getElementById("OPTgen").setAttribute("style", "display: block;");
+		last = "gen";
+	} else {
+		document.getElementById(hash).setAttribute("class", "current");
+		document.getElementById("OPT" + hash).setAttribute("style", "display: block;");
+		last = hash;
+	}
+	//---- END PROCESS URL HASHES ----//
+</script>
+</body>
+</html>

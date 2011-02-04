@@ -1,0 +1,122 @@
+== ANNOUNCEMENTS ==
+
+  **THIS IS A BETA PRODUCT** You should only install it if you are willing to test and report ideas and bugs
+
+  Please send feedback to ansel@anselsantosa.com
+
+== WHAT DOES IT DO? ==
+
+  It is a personalized solution for those who are tired of useless and distracting elements in the Google Calendar interface.
+  It removes as much or as little as you want. It also adds functionality if you so choose.
+  Look around the options page to see what it does first hand. Link below.
+
+
+== OPTIONS ==
+
+  The Options page is easy to use and interactive features:
+  * Screenshots when you mouseover options so you know what you're changing
+  * Organized tabbed navigation
+  * See it in action here: [http://www.anselsantosa.com/sites/MinimalistGoogleCalendar/options.html]
+
+  The following elements can be modified individually:
+ == GENERAL
+  * Hide Minimalist for Google Calendar options icon
+  * Customize button colors
+  * Rounded corners on input fields and textareas
+  * Custom CSS input
+ == GOOGLE BAR
+  * Hide Google bar [click to toggle when hidden]
+  * Make Google bar invisible until hover
+  * Hide background & border
+  * Hide Google links
+  * Replace Google links with custom menu
+  * Hide logged in
+  * Hide Labs icon
+  * Hide Settings link
+  * Hide Help link
+  * Hide Sign out link
+ == HEADER
+  * Hide header [click to toggle when hidden]
+  * Hide logo
+  * Use custom logo
+  * Hide all search
+  * Hide search button
+  * Hide search options
+ == MAIN
+  * Hide top toolbar
+  * Hide "Today" button
+  * Hide navigation arrows
+  * Hide current date range
+  * Hide print button
+  * Hide Refresh link
+  * Hide view buttons
+ == NAVIGATION
+  * Hide navigation
+  * Custom nav width
+  * Hide Create event button
+  * Hide Quick add link
+  * Hide mini calendar
+  * Hide My calendars
+  * Hide Other calendars
+  * Hide "Add a friend's calendar"
+  * Hide "Add | Settings" links
+ == MORE?
+  * Leave feature suggestions in the Issue Tracker: [http://code.google.com/p/minimalist-google-calendar/issues]
+
+
+== HOW DO I WORK IT? ==
+
+  All the instructions you need are on the support page:
+  [http://code.google.com/p/minimalist-google-calendar/wiki/Support]
+
+
+== ISSUES TRACKING ==
+
+  I test as thoroughly as I can before each release, but bugs are bound to get through.
+  Read, track, and submit bugs in the Issue Tracker:
+  [http://code.google.com/p/minimalist-google-calendar/issues]
+
+
+== QUESTION? ==
+
+  * Ping me on Twitter: @anstosa
+  * Email me: ansel@anselsantosa.com
+
+
+== COMING SOON ==
+
+  Want to recommend a feature? Submit it in the Issues Tracker:
+  [http://code.google.com/p/minimalist-google-calendar/issues/list]
+
+
+== PERMISSIONS ==
+
+  Learn more about Chrome Extension permissions here: http://www.google.com/support/chrome/bin/answer.py?hl=en&answer=186213
+  If you look as the permissions required by similar extensions in the Web Store, you will see that they are exactly the same
+  so before you make assumptions based on two short and broad statements, please read the following:
+
+ == "tabs"
+  * This permissions results in the "This extensions can access your browsing history" warning.
+  * I *NEVER* access your browsing history.
+  * I need this permission to open tabs. I use this to open the options page on major updates.
+  * This permission is also used to refresh the Google Calendar tab when you save your settings.
+ == "http://*google.com/calendar/*", "https://*google.com/calendar/*"
+  * This permission results in the "This extension can access your data on google.com/calendar" warning.
+  * I *NEVER* access, read, store, or transmit your personal data.
+  * I need this permission to run user scripts behind specific pages in the browser.
+  * These scripts inject Javascript and CSS into Gmail to enhance functionality and hide elements
+
+  Still don't trust me? Go to [https://github.com/anstosa/Minimalist-Google-Calendar] to see the entire source code.
+
+
+== CHANGELOG ==
+
+ == 1.0.0
+  * First!
+
+
+== LEGAL ==
+
+  I am not a Google Employee or officially affiliated with Google in any way. This extension is not endorsed by Google.
+  Google, Google Calendar, and the Google Calendar logo are trademarks of Google Inc.
+  Use of these trademarks is subject to Google Permissions.
