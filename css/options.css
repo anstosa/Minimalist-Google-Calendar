@@ -138,6 +138,9 @@ body {
 				table td:first-child {
 					padding-right: 5px;
 				}
+				table input.field {
+					margin-left: 10px;
+				}
 			.column{
 				float: left;
 				width: 50%;
@@ -274,7 +277,7 @@ body {
 				#preview img {
 					border: 1px solid #000;
 				}
-			#starCLR, #uCLR,  #highCLR, #highCLRu , #BTNcolor, #BTNborder, #BTNbottom, #BTNtop  {
+			#borderCLR, #todayCLR,#Hcolor, #BTNcolor, #BTNborder, #BTNbottom, #BTNtop  {
 				position: relative;
 				display: inline-block;
 				width: 50px;
@@ -284,7 +287,7 @@ body {
 				border: 1px solid #000;
 				cursor: pointer;
 			}
-			#starCLR div, #uCLR div, #highCLR div, #highCLRu div, #BTNcolor div, #BTNborder div, #BTNbottom div, #BTNtop div {
+			#borderCLR div, #todayCLR div, #Hcolor div, #BTNcolor div, #BTNborder div, #BTNbottom div, #BTNtop div {
 				width: 50px;
 				height: 15px;
 			}

@@ -21,6 +21,9 @@
   The following elements can be modified individually:
  == GENERAL
   * Hide Minimalist for Google Calendar options icon
+  * Customize theme color
+  * Customize hours style
+  * Customize today highlight color
   * Customize button colors
   * Rounded corners on input fields and textareas
   * Custom CSS input

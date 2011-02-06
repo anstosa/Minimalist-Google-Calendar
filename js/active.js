@@ -41,6 +41,7 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 		if ((today = getLoad()) != null) {
 			console.log("MINIMALIST GOOGLE CALENDAR: Google Calendar loaded! Work the magic...");
 			today.addEventListener("DOMSubtreeModified", run, false);
+			run();
 		}
 	}
 	//---- END CHECK PAGE LOAD ----//
@@ -58,7 +59,6 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 		}
 		// go loop go!
 		console.log("MINIMALIST GOOGLE CALENDAR: **MAIN LOOP**");
-
 		if (response.o.nav && !f_navToggle) {
 			console.log("MINIMALIST GOOGLE CALENDAR: Adding the nav hook...");
 			try {
@@ -68,8 +68,20 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 					minimalist(nav, false, "hideN");
 				var toggleN = document.createElement("td");
 					toggleN.setAttribute("id", "navToggle");
-				if (response.o.navO)
+				if (response.o.navO) {
 					toggleN.addEventListener("mouseover", toggleNav, false);
+					side.addEventListener("click", toggleNav, false);
+					var side_children = side.querySelectorAll('*');
+					for (var i = 0; i < side_children.length; i++) {
+						side_children[i].addEventListener("click", toggleNav, false);
+					}
+					nav.addEventListener("click", toggleNav, false);
+					var nav_children = nav.querySelectorAll('*');
+					for (var i = 0; i < nav_children.length; i++) {
+						console.log(nav_children[i]);
+						nav_children[i].addEventListener("click", toggleNav, false);
+					}
+				}
 				nav.parentNode.insertBefore(toggleN, nav);
 				f_navToggle = true;
 			} catch (e) { console.error(e); }
@@ -81,29 +93,22 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 					minimalist(tbar, false, "hideG")
 				var toggleG = document.createElement("div");
 					toggleG.setAttribute("id", "gbarToggle");
-				//if (!response.o.header) {
-					//toggleG.setAttribute("onClick", "toggleHeader()");
 					tbar.parentNode.insertBefore(toggleG, tbar);
-				/*} else {
-					//toggleG.setAttribute("onClick", "javascript:if(document.getElementById('gbarToggle').nextSibling.firstChild.getAttribute('style')==''){document.getElementById('gbarToggle').nextSibling.firstChild.setAttribute('style', 'display: none !important;');document.getElementById('gbarToggle').nextSibling.nextSibling.nextSibling.firstChild.setAttribute('style', 'display: none !important;');}else{document.getElementById('gbarToggle').nextSibling.firstChild.setAttribute('style', '');document.getElementById('gbarToggle').nextSibling.nextSibling.nextSibling.firstChild.setAttribute('style', '');};");
-					login.parentNode.parentNode.parentNode.parentNode.insertBefore(toggleG, login.parentNode.parentNode.parentNode);
-				}*/
 				f_gbarToggle = true;
 			} catch (e) { console.error(e); }
 		}
 		if (response.o.header && !f_headerToggle) {
 			console.log("MINIMALIST GOOGLE CALENDAR: hiding header and adding toggle...");
 			var head = document.getElementById("topBar");
-			//try {
+			try {
 				minimalist(head, false, "hideH")
 				if (!response.o.gbarH) {
 					var toggle = document.createElement("div");
 					toggle.setAttribute("id", "headerToggle");
-					//toggle.setAttribute("onClick", "javascript:if(document.getElementById('headerToggle').nextSibling.getAttribute('style')==''){document.getElementById('headerToggle').nextSibling.setAttribute('style', 'display: none !important;');}else{document.getElementById('headerToggle').nextSibling.setAttribute('style', '');};");
 					head.parentNode.insertBefore(toggle, head);
 				}
 				f_headerToggle = true;
-			//} catch (e) { console.error(e); }
+			} catch (e) { console.error(e); }
 		}
 		if (!keyinit) {
 			try {

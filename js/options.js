@@ -2,6 +2,9 @@ $(function(){
 	//---- LOAD ----//
 		// defaults
 		if (!localStorage["options"]) localStorage["options"] = "{}";
+		if (!localStorage["borderCLR"]) localStorage["borderCLR"] = "#BBCCFF";
+		if (!localStorage["Hcolor"]) localStorage["Hcolor"] = "#bbbbbb";
+		if (!localStorage["todayCLR"]) localStorage["todayCLR"] = "#FAD163";
 		if (!localStorage["BTNcolor"]) localStorage["BTNcolor"] = "#000000";
 		if (!localStorage["BTNborder"]) localStorage["BTNborder"] = "#bbbbbb";
 		if (!localStorage["BTNbottom"]) localStorage["BTNbottom"] = "#f9f9f9";
@@ -15,15 +18,28 @@ $(function(){
 		var o = JSON.parse(localStorage['options']);
 		// GENERAL
 			$("#mcicon").attr('checked', o.mcicon);
+			$("#borders").attr('checked', o.borders);
+				if ((o.borderCLR != null) && (o.borderCLR != ""))
+					$("#borderCLRsub").attr("style","background-color:" + o.borderCLR + ";");
+			$("#todayH").attr('checked', o.todayH);
+				if ((o.todayCLR != null) && (o.todayCLR != ""))
+					$("#todayCLRsub").attr("style","background-color:" + o.todayCLR + ";");
+			$("#hours").attr('checked', o.hours);
+				if ((o.Hcolor != null) && (o.Hcolor != ""))
+					$("#Hcolor").attr("style","background-color:" + o.Hcolor + ";");	
+				if ((o.Hweight != null) && (o.Hweight != ""))
+					$("#Hweight").val(o.Hweight);
+				if ((o.Hsize != null) && (o.Hsize != ""))
+					$("#Hsize").val(o.Hsize);
 			$("#BTN").attr('checked', o.BTN);
-			if ((o.BTNcolor != null) && (o.BTNcolor != ""))
-				$("#BTNcolorSUB").attr("style","background-color:" + o.BTNcolor + ";");
-			if ((o.BTNborder != null) && (o.BTNborder != ""))
-				$("#BTNborderSUB").attr("style","background-color:" + o.BTNborder + ";");
-			if ((o.BTNbottom != null) && (o.BTNbottom != ""))
-				$("#BTNbottomSUB").attr("style","background-color:" + o.BTNbottom + ";");
-			if ((o.BTNtop != null) && (o.BTNtop != ""))
-				$("#BTNtopSUB").attr("style","background-color:" + o.BTNtop + ";");
+				if ((o.BTNcolor != null) && (o.BTNcolor != ""))
+					$("#BTNcolorSUB").attr("style","background-color:" + o.BTNcolor + ";");
+				if ((o.BTNborder != null) && (o.BTNborder != ""))
+					$("#BTNborderSUB").attr("style","background-color:" + o.BTNborder + ";");
+				if ((o.BTNbottom != null) && (o.BTNbottom != ""))
+					$("#BTNbottomSUB").attr("style","background-color:" + o.BTNbottom + ";");
+				if ((o.BTNtop != null) && (o.BTNtop != ""))
+					$("#BTNtopSUB").attr("style","background-color:" + o.BTNtop + ";");
 			$("#testButton").attr("style","color: " + o.BTNcolor + ";border: 1px solid " + o.BTNborder + ";background: -webkit-gradient(linear,0% 40%,0% 70%,from(" + o.BTNbottom + "),to(" + o.BTNtop + "));");
 			$("#corners").attr('checked', o.corners);
 			$("#trans").attr('checked', o.trans);
@@ -95,6 +111,7 @@ $(function(){
 			$("#out").attr('checked', o.out);
 		// HEADER
 			$("#header").attr('checked', o.header);
+			$("#headerS").attr('checked', o.headerS);
 			$("#logoH").attr('checked', o.logoH);
 			$("#logo").attr('checked', o.logo);
 			if ((o.logoSRC != null) && (o.logoSRC != ""))
@@ -140,6 +157,14 @@ $(function(){
 		localStorage['options'] = JSON.stringify({
 			// GENERAL
 				"mcicon":$("#mcicon").attr('checked'),
+				"borders":$("#borders").attr('checked'),
+					"borderCLR":localStorage["borderCLR"],
+				"todayH":$("#todayH").attr('checked'),
+					"todayCLR":localStorage["todayCLR"],
+				"hours":$("#hours").attr('checked'),
+					"Hcolor":localStorage["Hcolor"],
+					"Hweight":$("#Hweight").val(),
+					"Hsize":$("#Hsize").val(),
 				"BTN":$("#BTN").attr('checked'),
 					"BTNcolor":localStorage["BTNcolor"],
 					"BTNborder":localStorage["BTNborder"],
@@ -181,6 +206,7 @@ $(function(){
 				"out":$("#out").attr('checked'),
 			// HEADER
 				"header":$("#header").attr('checked'),
+				"headerS":$("#headerS").attr('checked'),
 				"logoH":$("#logoH").attr('checked'),
 				"logo":$("#logo").attr('checked'),
 					"logoSRC":$("#logoSRC").val(),
@@ -324,11 +350,14 @@ function cButtonReset() {
 function export(EIid) {
 	var prefOut = new Array();
 		prefOut[0] = localStorage["options"];
-		prefOut[1] = localStorage["BTNcolor"];
-		prefOut[2] = localStorage["BTNborder"];
-		prefOut[3] = localStorage["BTNbottom"];
-		prefOut[4] = localStorage["BTNtop"];
-		prefOut[5] = localStorage["customCSSval"];
+		prefOut[1] = localStorage["borderCLR"];
+		prefOut[2] = localStorage["Hcolor"];
+		prefOut[3] = localStorage["todayCLR"];
+		prefOut[4] = localStorage["BTNcolor"];
+		prefOut[5] = localStorage["BTNborder"];
+		prefOut[6] = localStorage["BTNbottom"];
+		prefOut[7] = localStorage["BTNtop"];
+		prefOut[8] = localStorage["customCSSval"];
 	var prefsOut = prefOut[0];	// fencepost
 	for (var i = 1; i <= 10; i++) {
 		prefsOut += '\n' + prefOut[i];
@@ -341,11 +370,14 @@ function import(EIid) {
 	var prefsIn = document.getElementById(EIid).value;
 	var prefIn = prefsIn.split("\n");
 		localStorage["options"] = prefIn[0];
-		localStorage["BTNcolor"] = prefIn[1];
-		localStorage["BTNborder"] = prefIn[2];
-		localStorage["BTNbottom"] = prefIn[3];
-		localStorage["BTNtop"] = prefIn[4];
-		localStorage["customCSSval"] = prefIn[5];
+		localStorage["borderCLR"] = prefIn[1];
+		localStorage["Hcolor"] = prefIn[2];
+		localStorage["todayCLR"] = prefIn[3];
+		localStorage["BTNcolor"] = prefIn[4];
+		localStorage["BTNborder"] = prefIn[5];
+		localStorage["BTNbottom"] = prefIn[6];
+		localStorage["BTNtop"] = prefIn[7];
+		localStorage["customCSSval"] = prefIn[8];
 	window.location.hash = "imps";
 	window.location.reload();
 }

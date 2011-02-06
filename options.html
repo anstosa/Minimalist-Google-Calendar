@@ -12,8 +12,51 @@
 		//---- COLOR PICKERS ----//
 		(function($){
 			var initLayout = function() {
-				// var bottom = localStorage["BTNbottom"];
-				// var top = localStorage["BTNtop"];
+				$('#borderCLR').ColorPicker({
+					color: localStorage["borderCLR"],
+					onShow: function (colpkr) {
+						$(colpkr).fadeIn(500);
+						return false;
+					},
+					onHide: function (colpkr) {
+						$(colpkr).fadeOut(500);
+						return false;
+					},
+					onChange: function (hsb, hex, rgb) {
+						$('#borderCLR div').css('backgroundColor', '#' + hex);
+						localStorage["borderCLR"] = "#" + hex;
+					}
+				});
+				$('#Hcolor').ColorPicker({
+					color: localStorage["Hcolor"],
+					onShow: function (colpkr) {
+						$(colpkr).fadeIn(500);
+						return false;
+					},
+					onHide: function (colpkr) {
+						$(colpkr).fadeOut(500);
+						return false;
+					},
+					onChange: function (hsb, hex, rgb) {
+						$('#Hcolor div').css('backgroundColor', '#' + hex);
+						localStorage["Hcolor"] = "#" + hex;
+					}
+				});
+				$('#todayCLR').ColorPicker({
+					color: localStorage["todayCLR"],
+					onShow: function (colpkr) {
+						$(colpkr).fadeIn(500);
+						return false;
+					},
+					onHide: function (colpkr) {
+						$(colpkr).fadeOut(500);
+						return false;
+					},
+					onChange: function (hsb, hex, rgb) {
+						$('#todayCLR div').css('backgroundColor', '#' + hex);
+						localStorage["todayCLR"] = "#" + hex;
+					}
+				});
 				$('#BTNcolor').ColorPicker({
 					color: localStorage["BTNcolor"],
 					onShow: function (colpkr) {
@@ -148,6 +191,44 @@
 				<input type="checkbox" id="mcicon" />
 					&nbsp;<label for="mcicon" title="">Hide Minimalist for Google Calendar options icon</label><br />
 					<span class="note"><strong>NOT RECOMMENDED:</strong> Only shows up in Google Calendar</span>
+			</div>
+		</section>
+		<section>
+			<h3>Theme</h3>
+			<div>
+				<input type="checkbox" id="borders" />
+					&nbsp;<label for="borders" title="">Change border/background color</label><div c id="borderCLR"><div id="borderCLRsub" style="background-color: #BBCCFF;"></div></div><br />
+					<span class="note">NOTE: Dark/main color. Lighter tint calculated automatically</span><br />
+			</div>
+		</section>
+		<section>
+			<h3>Today  Highlight</h3>
+			<div>
+				<input type="checkbox" id="todayH" />
+					&nbsp;<label for="todayH" title="">Change today color</label><div c id="todayCLR"><div id="todayCLRsub" style="background-color: #FAD163;"></div></div><br />
+			</div>
+		</section>
+		<section>
+			<h3>Hour list</h3>
+			<div>
+				<input type="checkbox" id="hours" />
+					&nbsp;<label for="hours" title="">Use custom style</label>
+					<table>
+						<tr>
+							<td>Font color</td>
+							<td><div c id="Hcolor"><div id="HcolorSUB" style="background-color: #aaa;"></div></div></td>
+						</tr>
+						<tr>
+							<td>Font weight</td>
+							<td><input type="text" id="Hweight" size="5" class="field" value="bold" />
+								<span class="note">"normal", "bold", or 100-900</span></td>
+						</tr>
+						<tr>
+							<td>Font Size</td>
+							<td><input type="text" id="Hsize" size="5" class="field" value="18px" />
+								<span class="note">11px is default</span></td>
+						</tr>
+					</table>
 			</div>
 		</section>
 		<section>
@@ -292,6 +373,14 @@
 			</div>
 		</section>
 		<section>
+			<h3>Appearance</h3>
+			<div>
+				<input type="checkbox" id="headerS" />
+					&nbsp;<label for="headerS" title="">Skinny header</label><br />
+					<span class="note">Trims about 20 pixels off the bottom of the header.</span>
+			</div>
+		</section>
+		<section>
 			<h3>Logo</h3>
 			<div>
 				<input type="checkbox" id="logoH" />
@@ -352,6 +441,13 @@
 					&nbsp;<label for="t_v4" title="">Hide 7 Days button</label><br />
 				<input type="checkbox" id="t_v5" />
 					&nbsp;<label for="t_v5" title="">Hide Agenda button</label><br />
+			</div>
+		</section>
+		<section>
+			<h3>Tips</h3>
+			<div>
+				<span class="note"><strong>NOTE:</strong> Hide tips by disabling them in Google Calendar Settings.</span>
+				<span class="note">2nd option from the bottom in the General tab</span>
 			</div>
 		</section>
 	</div>
@@ -462,7 +558,7 @@
 			<h3>Extensions</h3>
 			<div>
 				<ul>
-					<li><a href="">Minimalist for Gmail</a>: Individually hide almost 100 interface elements, custom logos and row highlighting, favicon/desktop notifier, and more...
+					<li><a href="https://chrome.google.com/webstore/detail/oddhbkghjoccbljmagcgoklbfdjeiinb">Minimalist for Gmail</a>: Individually hide almost 100 interface elements, custom logos and row highlighting, favicon/desktop notifier, and more...
 						<ul>
 							<li><a href="http://www.anselsantosa.com/sites/MinimalistGmail/options.html" target="_blank">See the full options page</a></li>
 						</ul>
@@ -509,19 +605,21 @@
 		<section>
 			<h3>Announcements</h3>
 			<div>
-				Minimalist Gmail has exploded overnight thanks to <a href="http://lifehacker.com/5741771/minimalist-gmail-is-the-best-gmail-tweaker-for-chrome-yet" target="_blank">Lifehacker</a>.<br />
-				The improvements and fixes in this release are all thanks the detailed bug reports and ideas from new users. Thanks!
+				Thanks for all the feedback testers! Keep it coming at <a href="mailto:ansel@anselsantosa.com">ansel@anselsantosa.com</a>.<br />
+				I'll publish either tomorrow evening or Monday.
 			</div>
 		</section>
-		<!-- <section>
+		<section>
 			<h3>What's new</h3>
 			<div>
 				Full changelog on <a href="http://code.google.com/p/minimalist-google-calendar/#CHANGELOG" target="_blank">Google Code</a><br /><br />
 				<strong>General</strong>
 				<ul>
-					<li></li>
+					<li>Change theme color</li>
+					<li>Change today highlight color</li>
+					<li>Custom style for hours list</li>
 				</ul>
-				<strong>Google Bar</strong>
+				<!-- <strong>Google Bar</strong>
 				<ul>
 					<li></li>
 				</ul>
@@ -541,19 +639,19 @@
 				<ul>
 					<li></li>
 					<li><a href="http://code.google.com/p/minimalist-google-calendar/#CHANGELOG" target="_blank"><strong>bugfixes</strong></a></li>
-				</ul>
+				</ul> -->
 			</div>
-		</section> -->
+		</section>
 		<section>
 			<h3>Rate &amp; Review</h3>
 			<div>
-				Like Minimalist for Google Calendar?<br />Please <a href="" target="_blank">rate and review it in the Web Store!</a>
+				Like Minimalist for Google Calendar?<br />Please <a href="https://chrome.google.com/webstore/detail/mgljgiacemcbnibkkmbolnljeffaadna" target="_blank">rate and review it in the Web Store!</a>
 			</div>
 		</section>
 		<section>
 			<h3>Donate</h3>
 			<div>
-				<p>This is a personal project and I am a full-time student, please <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RVCM5TZRYBK8">support me by donating</a> so I can keep Minimalist Gmail up to date and competitive.</p>
+				<p>This is a personal project and I am a full-time student, please <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RVCM5TZRYBK8">support me by donating</a> so I can keep Minimalist for Google Calendar up to date and competitive.</p>
 				<br />
 				<a class="button" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=C5GNE665F894E" target="_blank">Donate</a>
 			</div>
@@ -589,13 +687,13 @@
 		<section>
 			<h3>Rate &amp; Review</h3>
 			<div>
-				Like Minimalist for Google Calendar?<br />Please <a href="" target="_blank">rate and review it in the Web Store!</a>
+				Like Minimalist for Google Calendar?<br />Please <a href="https://chrome.google.com/webstore/detail/mgljgiacemcbnibkkmbolnljeffaadna" target="_blank">rate and review it in the Web Store!</a>
 			</div>
 		</section>
 		<section>
 			<h3>Donate</h3>
 			<div>
-				<p>This is a personal project and I am a full-time student, please <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RVCM5TZRYBK8">support me by donating</a> so I can keep Minimalist Gmail up to date and competitive.</p>
+				<p>This is a personal project and I am a full-time student, please <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RVCM5TZRYBK8">support me by donating</a> so I can keep Minimalist for Google Calendar up to date and competitive.</p>
 				<br />
 				<a class="button" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4RVCM5TZRYBK8" target="_blank">Donate</a>
 			</div>

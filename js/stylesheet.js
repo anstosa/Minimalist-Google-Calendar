@@ -8,10 +8,11 @@
 chrome.extension.sendRequest({elements: 'o'}, function(response) {
 	var css = "";
 
-	css += "#topBar td { height: 36px !important; }\n";
+	css += "html::-webkit-scrollbar { width: 0px; }\n";
 	css += "input, textarea { outline: 0; margin: 1px !important; border: 1px solid !important; border-color: #585858 #B0B0B0 #B0B0B0 #B0B0B0 !important; }\n";
 	css += "input:focus, textarea:focus { outline: 0; margin: 0px !important; border: 2px solid #BCF !important; }\n";
 	css += "#nav:not([min ~= 'hideN']), #sidebar:not([min ~= 'hideN']) { width: " + response.o.navW + "px; }\n";
+	css += "#gbar, #guser { height: 20px; padding-bottom: 0 !important; }\n";	
 	
 	// GENERAL
 		if (response.o.BTN) {
@@ -22,11 +23,25 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += ".goog-imageless-button-outer-box, .goog-imageless-button { border-color: " + response.o.BTNborder + " !important; }\n";
 		} else {
 			css += ".goog-imageless-button-content { color: #000 !important; }\n";
-			css += ".goog-imageless-button { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#9f9f9),to(#ded5de)) !important; }\n";
-			css += ".goog-imageless-button-checked { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#ded5de),to(#9f9f9)) !important; }\n";
+			css += ".goog-imageless-button { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#f9f9f9),to(#ded5de)) !important; }\n";
+			css += ".goog-imageless-button-checked { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#ded5de),to(#f9f9f9)) !important; }\n";
 			css += ".goog-imageless-button-top-shadow { display: none; }\n";
 			css += ".goog-imageless-button-outer-box, .goog-imageless-button { border-color: #bbb !important; }\n";
 		}
+		if (response.o.borders) {
+			css += ".ep-ea, .ep-ea-bot, #rhstogglecell, #rhstogglecell *, #tc_top > div, #mainnav { background: " + response.o.borderCLR + " !important; background-color: " + response.o.borderCLR + " !important; }\n";
+			css += ".ep-ts, .t-chrome, .ep-gp-sp, .qnb-container, .qnb-container-ph, .wk-weektop, .wk-dummyth { background: " + lighten(response.o.borderCLR) + " !important; background-color: " + lighten(response.o.borderCLR) + " !important; }\n";
+			css += ".ui-dtsr-unselected, .tg-times-pri, .tg-times-sec { background: " + lighten(lighten(response.o.borderCLR)) + " !important; background-color: " + lighten(lighten(response.o.borderCLR)) + " !important; }\n";
+			css += ".ep-ts, .ui-dtsr-selected, #scrolltimedeventswk, .nb_0, .sng-wrapper, .printborder.mainGrid, .printborder.t-chrome { border-color: " + response.o.borderCLR + " !important; }\n";
+			css += ".ui-dtsr-selected { border-bottom-color: #fff !important; }\n";
+		}
+		if (response.o.todayH) {
+			css += "[class *= 'st-bg-td'], .wk-today { background-color: " + response.o.todayCLR + "; border-color: " + response.o.todayCLR + "; }\n"
+			css += "[class *= 'st-bg-td'], .tg-today { background-color: " + lighten(lighten(lighten(lighten(lighten(response.o.todayCLR))))) + "; border-color: " + response.o.todayCLR + "; }\n"
+			css += ".tg-col-today { border-color: " + response.o.todayCLR + "; }\n"
+		}
+		if (response.o.hours)
+			css += ".tg-time-pri { font-size: " + response.o.Hsize + "; font-weight: " + response.o.Hweight + "; color: " + response.o.Hcolor + "; }\n"
 		if (response.o.corners)
 			css += "input, textarea { -webkit-border-radius: 5px; }\n";
 		if (response.o.trans)
@@ -35,8 +50,8 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		if (response.o.gbar)
 			css += "#gbar { display: none !important; }\n";
 		if (response.o.gbarH) {
-			css += "#gbarToggle { background-color: rgba(0,0,0,0); height: 10px !important; cursor: pointer !important;}\n";
-			css += "#gbarToggle:hover { background-color: rgba(0,0,0,.15); }\n";
+			css += "#gbarToggle { background-color: rgb(187,204,255, 0); height: 10px !important; cursor: pointer !important;}\n";
+			css += "#gbarToggle:hover { background-color: rgba(187,204,255,.5); }\n";
 			css += ".gbh, .gbd { top: 34px; }\n";
 		}
 		if (response.o.gbarO) {
@@ -46,10 +61,15 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		if (response.o.gbarB)
 			css += ".gbh, .gbd { border: 0 !important; }\n";
 	// HEADER
-		if (response.o.header || response.o.gbarH) {
-			css += "#topBar { height: 42px; }\n";
-			css += "[min ~= 'hideH'], [min ~= 'hideG'] { opacity: 0 !important; height: 0px !important; overflow: hidden !important; }\n";
+		if (response.o.header || response.o.gbarH)
+			css += "[min ~= 'hideH'], [min ~= 'hideH'] *, [min ~= 'hideG'], [min ~= 'hideG'] * { opacity: 0; height: 0px !important; }\n";
+		if (response.o.header) {
+			//css += "[min ~= 'hideH'] #ntowner { margin-top: -20px !importnat; opacity: 1 !important; }\n";
 		}
+		if (response.o.headerS)
+			css += "#topBar td { height: 36px !important; }\n";
+		if (response.o.gbarH)
+			css += "#gbi, #gbs { top: 34px !important; }\n";
 		if (response.o.header && !response.o.gbarH) {
 			css += "#headerToggle { background-color: rgba(0,0,0,0); height: 10px !important; cursor: pointer !important;}\n";
 			css += "#headerToggle:hover { background-color: rgba(0,0,0,.15); }\n";
@@ -106,9 +126,9 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 	// NAVIGATION
 		if (response.o.nav) {
 			css += "#navToggle { z-index: 999; background-color: rgba(0,0,0,0); width: 10px !important; cursor: pointer !important; }\n";
-			css += "#navToggle:hover { background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.2)), to(rgba(0,0,0,0))); }\n";
+			css += "#navToggle:hover { background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,0))); }\n";
 			css += "td[min ~= 'hideN'] { width: 0px !important; opacity: 0 !important; overflow: hidden !important; }\n";
-			css += "#sidebar:not([min ~= 'hideN']) { width: " + (response.o.navW) + "px !important; }\n";
+			css += "#sidebar:not([min ~= 'hideN']) { width: " + (parseInt(response.o.navW) + 10) + "px !important; }\n";
 			css += "#sidebar, #sidebar[min ~= 'hideN'] + #mainnav { border-left: 10px solid #fff; }\n";
 			//css += "#sidebar, #nav { width: " + response.o.navW + "px; opacity: 1; }\n";
 		}
@@ -139,4 +159,30 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		heads[0].appendChild(node);
 	}
 	//---- END INJECT CSS ----//
+
+	//---- HELPER METHODS ----//
+	function HexToR(h) { return parseInt((cutHex(h)).substring(0,2),16) }
+	function HexToG(h) { return parseInt((cutHex(h)).substring(2,4),16) }
+	function HexToB(h) { return parseInt((cutHex(h)).substring(4,6),16) }
+	function cutHex(h) { return (h.charAt(0) == "#") ? h.substring(1,7) : h }
+	function lighten(one) {
+		if (one.indexOf('rgb') == -1) {
+			var r = HexToR(one) + 30;
+			var g = HexToG(one) + 30;
+			var b = HexToB(one) + 30;
+		} else {
+			var rgb = one.split(",");
+			var r = parseInt(rgb[0].substring(4)) + 20;
+			var g = parseInt(rgb[1]) + 20;
+			var b = parseInt(rgb[2].substring(0,rgb[2].indexOf("\)"))) + 20;
+		}
+		if (r > 255)
+			r = 255;
+		if (g > 255)
+			g = 255;
+		if (b > 255)
+			b = 255;
+		return "rgb(" + r + "," + g + "," + b + ")";
+	}
+	//---- HELPER METHODS ----//
 });
