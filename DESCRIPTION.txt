@@ -1,8 +1,11 @@
 == ANNOUNCEMENTS ==
 
-  **THIS IS A BETA PRODUCT** You should only install it if you are willing to test and report ideas and bugs
+  Officially dropping the beta tag but just like th early days of Minimalist for Gmail,
+  it's very much a developing product.
 
-  Please send feedback to ansel@anselsantosa.com
+  My efforts will be primarily focused here until I can work out all the kinks and get a
+  functional, robust, and stable Google Calendar enhancer.
+
 
 == WHAT DOES IT DO? ==
 

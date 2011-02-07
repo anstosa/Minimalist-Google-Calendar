@@ -359,7 +359,7 @@ function export(EIid) {
 		prefOut[7] = localStorage["BTNtop"];
 		prefOut[8] = localStorage["customCSSval"];
 	var prefsOut = prefOut[0];	// fencepost
-	for (var i = 1; i <= 10; i++) {
+	for (var i = 1; i <= 8; i++) {
 		prefsOut += '\n' + prefOut[i];
 	}
 	document.getElementById(EIid).innerHTML = prefsOut;

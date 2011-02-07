@@ -36,9 +36,9 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += ".ui-dtsr-selected { border-bottom-color: #fff !important; }\n";
 		}
 		if (response.o.todayH) {
-			css += "[class *= 'st-bg-td'], .wk-today { background-color: " + response.o.todayCLR + "; border-color: " + response.o.todayCLR + "; }\n"
-			css += "[class *= 'st-bg-td'], .tg-today { background-color: " + lighten(lighten(lighten(lighten(lighten(response.o.todayCLR))))) + "; border-color: " + response.o.todayCLR + "; }\n"
-			css += ".tg-col-today { border-color: " + response.o.todayCLR + "; }\n"
+			css += ".st-dtitle-today, [class *= 'st-bg-td'], .wk-today { background-color: " + response.o.todayCLR + "; border-color: " + response.o.todayCLR + "; }\n"
+			css += ".st-bg-today, [class *= 'st-bg-td'], .tg-today { background-color: " + lighten(lighten(lighten(lighten(lighten(response.o.todayCLR))))) + "; border-color: " + response.o.todayCLR + "; }\n"
+			css += ".st-dtitle-down, .st-bg-today, .st-dtitle-today, .tg-col-today { border-color: " + response.o.todayCLR + "; }\n"
 		}
 		if (response.o.hours)
 			css += ".tg-time-pri { font-size: " + response.o.Hsize + "; font-weight: " + response.o.Hweight + "; color: " + response.o.Hcolor + "; }\n"
