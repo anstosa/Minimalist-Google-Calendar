@@ -34,6 +34,7 @@ $(function(){
 				if ((o.todayCLR != null) && (o.todayCLR != ""))
 					$("#todayCLRsub").attr("style","background-color:" + o.todayCLR + ";");
 			$("#weekends").attr('checked', o.weekends);
+			$("#weekendM").attr('checked', o.weekendM);
 			$("#hours").attr('checked', o.hours);
 				if ((o.Hcolor != null) && (o.Hcolor != ""))
 					$("#Hcolor").attr("style","background-color:" + o.Hcolor + ";");	
@@ -177,6 +178,7 @@ $(function(){
 				"todayH":$("#todayH").attr('checked'),
 					"todayCLR":localStorage["todayCLR"],
 				"weekends":$("#weekends").attr('checked'),
+				"weekendM":$("#weekendM").attr('checked'),
 				"hours":$("#hours").attr('checked'),
 					"Hcolor":localStorage["Hcolor"],
 					"Hweight":$("#Hweight").val(),

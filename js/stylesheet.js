@@ -50,7 +50,9 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += ".dp-today, .dp-today-selected, .st-dtitle-down, .st-bg-today, .st-dtitle-today, .tg-col-today { border-color: " + response.o.todayCLR + "; }\n"
 		}
 		if (response.o.weekends){
-			css += ".tg-weekend, tr:first-child > .st-s, .st-bg-table td:first-child, .st-grid tr:first-child td:first-child, .st-bg-table td:last-child, .st-grid tr:first-child td:last-child { background: rgba(0,0,0,.05) !important; }\n";
+			if (response.o.weekendM)
+				css += ".tg-weekend, tr:first-child > .st-s, .st-bg-table td:nth-child(6), .st-grid tr:first-child td:nth-child(6), .st-bg-table td:last-child, .st-grid tr:first-child td:last-child { background: rgba(0,0,0,.05) !important; }\n";
+			else css += ".tg-weekend, tr:first-child > .st-s, .st-bg-table td:first-child, .st-grid tr:first-child td:first-child, .st-bg-table td:last-child, .st-grid tr:first-child td:last-child { background: rgba(0,0,0,.05) !important; }\n";
 			css += ".st-dtitle { border-top: 0 !important; }\n";
 		}		
 		if (response.o.hours)
@@ -63,8 +65,8 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		if (response.o.gbar)
 			css += "#gbar { display: none !important; }\n";
 		if (response.o.gbarH) {
-			css += "#gbarToggle { background-color: rgb(187,204,255, 0); height: 10px !important; cursor: pointer !important;}\n";
-			css += "#gbarToggle:hover { background-color: rgba(187,204,255,.5); }\n";
+			css += "#gbarToggle { background-color: rgb(0,0,0,0); height: 10px !important; cursor: pointer !important;}\n";
+			css += "#gbarToggle:hover { background-color: rgba(0,0,0,.5); }\n";
 			css += ".gbh, .gbd { top: 34px; }\n";
 		}
 		if (response.o.gbarO) {
@@ -74,13 +76,15 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		if (response.o.gbarB)
 			css += ".gbh, .gbd { border: 0 !important; }\n";
 	// HEADER
-		if (response.o.header || response.o.gbarH)
-			css += "[min ~= 'hideH'], [min ~= 'hideH'] *, [min ~= 'hideG'], [min ~= 'hideG'] * { opacity: 0; z-index: -9999; height: 0px !important; }\n";
+		if (response.o.header || response.o.gbarH) {
+			css += "[min ~= 'hideH'], [min ~= 'hideH'] *, [min ~= 'hideG'], [min ~= 'hideG'] *, #topCtrls, td[class = 'logoparent logoparent-nondasher'] { opacity: 0; margin: 0 !important; padding: 0 !important; height: 0 !important; }\n";
+			//css += "[min ~= 'hideH'] *, [min ~= 'hideG'] * { margin: -16px 0 16px 0 !important; }\n";
+		}
 		if (response.o.header) {
 			//css += "[min ~= 'hideH'] #ntowner { margin-top: -20px !importnat; opacity: 1 !important; }\n";
 		}
 		if (response.o.headerS)
-			css += "#topBar td { height: 36px !important; }\n";
+			css += "#topBar td { height: 36px; }\n";
 		if (response.o.gbarH)
 			css += "#gbi, #gbs { top: 34px !important; }\n";
 		if (response.o.header && !response.o.gbarH) {
