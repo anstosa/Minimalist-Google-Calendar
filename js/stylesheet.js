@@ -77,7 +77,7 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += ".gbh, .gbd { border: 0 !important; }\n";
 	// HEADER
 		if (response.o.header || response.o.gbarH) {
-			css += "[min ~= 'hideH'], [min ~= 'hideH'] *, [min ~= 'hideG'], [min ~= 'hideG'] *, #topCtrls, td[class = 'logoparent logoparent-nondasher'] { opacity: 0; margin: 0 !important; padding: 0 !important; height: 0 !important; }\n";
+			css += "[min ~= 'hideH'], [min ~= 'hideH'] *, [min ~= 'hideG'], [min ~= 'hideG'] * { opacity: 0; margin: 0 !important; padding: 0 !important; height: 0 !important; }\n";
 			//css += "[min ~= 'hideH'] *, [min ~= 'hideG'] * { margin: -16px 0 16px 0 !important; }\n";
 		}
 		if (response.o.header) {

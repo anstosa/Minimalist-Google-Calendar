@@ -117,6 +117,8 @@
 
 == CHANGELOG ==
 
+ == 0.6.3 [10 Feb]
+  * Fixed: Header contents hidden when Google Bar hidden
  == 0.6.2 [10 Feb]
   * Added: Week starts on Monday option for dim weekends
   * Fixed: [partially] unclickable top nav with header hidden [for real this time]
