@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name             Minimalist for Gmail
+// @name             Minimalist for Google Calendar
 // @author           Ansel Santosa
 // @namespace        http://chrome.google.com/webstore
 // @description      Features that require one time initialization on complete page load.
@@ -132,13 +132,13 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 			console.log("MINIMALIST GOOGLE CALENDAR: customizing Google links...");
 			try {
 				var one = document.getElementById("gbar").childNodes[0].childNodes[0];
-					one.setAttribute("style", "font-weight: normal;");
-					one.setAttribute("class", "");
-					one.innerHTML = "<a target=\"" + response.o.c_t_1 + "\" id=\"cbarOne\" href=\"" + response.o.c_u_1 + "\" class=\"gb1 qq\">" + response.o.c_n_1 + "</a>";
+					one.setAttribute("href", response.o.c_u_1);
+					one.setAttribute("target", response.o.c_t_1);
+					one.innerHTML = response.o.c_n_1;
 				var two = document.getElementById("gbar").childNodes[0].childNodes[2];
-					two.setAttribute("href", response.o.c_u_2);
-					two.setAttribute("target", response.o.c_t_2);
-					two.innerHTML = response.o.c_n_2;
+					two.setAttribute("style", "font-weight: normal;");
+					two.setAttribute("class", "");
+					two.innerHTML = "<a target=\"" + response.o.c_t_2 + "\" id=\"cbarOne\" href=\"" + response.o.c_u_2 + "\" class=\"gb1\">" + response.o.c_n_2 + "</a>";
 				var three = document.getElementById("gbar").childNodes[0].childNodes[4];
 					three.setAttribute("href", response.o.c_u_3);
 					three.setAttribute("target", response.o.c_t_3);

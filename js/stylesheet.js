@@ -16,17 +16,24 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 	
 	// GENERAL
 		if (response.o.BTN) {
-			css += ".goog-imageless-button-content { color: " + response.o.BTNcolor + " !important; }\n";
+			css += ".goog-imageless-button-content, .goog-imageless-button-disabled .goog-imageless-button-content { color: " + response.o.BTNcolor + " !important; }\n";
 			css += ".goog-imageless-button { background: -webkit-gradient(linear,0% 40%,0% 70%,from(" + response.o.BTNbottom + "),to(" + response.o.BTNtop + ")) !important; }\n";
 			css += ".goog-imageless-button-checked { background: -webkit-gradient(linear,0% 40%,0% 70%,from(" + response.o.BTNtop + "),to(" + response.o.BTNbottom + ")) !important; }\n";
 			css += ".goog-imageless-button-top-shadow { display: none; }\n";
-			css += ".goog-imageless-button-outer-box, .goog-imageless-button { border-color: " + response.o.BTNborder + " !important; }\n";
+			css += ".goog-imageless-button-outer-box, .goog-imageless-button, .goog-imageless-button-disabled .goog-imageless-button-outer-box, .goog-imageless-button-disabled .goog-imageless-button { border-color: " + response.o.BTNborder + " !important; }\n";
+			css += ".goog-imageless-button-disabled .goog-imageless-button-outer-box { background: -webkit-gradient(linear,0% 40%,0% 70%,from(" + response.o.BTNbottom + "),to(" + response.o.BTNbottom + ")) !important; }\n";
 		} else {
 			css += ".goog-imageless-button-content { color: #000 !important; }\n";
 			css += ".goog-imageless-button { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#f9f9f9),to(#ded5de)) !important; }\n";
 			css += ".goog-imageless-button-checked { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#ded5de),to(#f9f9f9)) !important; }\n";
 			css += ".goog-imageless-button-top-shadow { display: none; }\n";
-			css += ".goog-imageless-button-outer-box, .goog-imageless-button { border-color: #bbb !important; }\n";
+			css += ".goog-imageless-button-outer-box, .goog-imageless-button, .goog-imageless-button-disabled .goog-imageless-button-outer-box, .goog-imageless-button-disabled .goog-imageless-button { border-color: #bbb !important; }\n";
+			css += ".goog-imageless-button-disabled .goog-imageless-button-outer-box { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#f9f9f9),to(#f9f9f9)) !important; }\n";
+		}
+		if (response.o.backC) {
+			css += ".dp-onmonth-selected { background: " + lighten(lighten(lighten(lighten(response.o.backCLR)))) + " !important; }\n";
+			css += ".dp-weekend-selected { background: " + lighten(lighten(response.o.backCLR)) + " !important; }\n";
+			css += "body, #nav, #searchAddCalBox, .dpdiv, .dpi-popup, .dp-weekday, .dp-weekend, .dp-weekendh, #weekViewAllDaywk, #tgTable, .chromeColor, .calList, .calHeader { background: " + response.o.backCLR + " !important;  background-color: " + response.o.backCLR + " !important; }\n";
 		}
 		if (response.o.borders) {
 			css += ".ep-ea, .ep-ea-bot, #rhstogglecell, #rhstogglecell *, #tc_top > div, #mainnav { background: " + response.o.borderCLR + " !important; background-color: " + response.o.borderCLR + " !important; }\n";
@@ -35,11 +42,17 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += ".ep-ts, .ui-dtsr-selected, #scrolltimedeventswk, .nb_0, .sng-wrapper, .printborder.mainGrid, .printborder.t-chrome { border-color: " + response.o.borderCLR + " !important; }\n";
 			css += ".ui-dtsr-selected { border-bottom-color: #fff !important; }\n";
 		}
+		if (response.o.linkC)
+			css += "[class *= 'link'], [id *= 'link'], [class *= 'lk'], [id *= 'lk'], .st-more, .mv-dayname, .dp-sb-cur, .mg-print, .mg-refresh, .ui-dtsr-unselected, .qnb-quickadd, a, a[class *= 'gb'] { color: " + response.o.linkCLR + " !important; }\n";
 		if (response.o.todayH) {
 			css += ".st-dtitle-today, [class *= 'st-bg-td'], .wk-today { background-color: " + response.o.todayCLR + "; border-color: " + response.o.todayCLR + "; }\n"
-			css += ".st-bg-today, [class *= 'st-bg-td'], .tg-today { background-color: " + lighten(lighten(lighten(lighten(lighten(response.o.todayCLR))))) + "; border-color: " + response.o.todayCLR + "; }\n"
-			css += ".st-dtitle-down, .st-bg-today, .st-dtitle-today, .tg-col-today { border-color: " + response.o.todayCLR + "; }\n"
+			css += ".dp-today-selected, .st-bg-today, [class *= 'st-bg-td'], .tg-today { background-color: " + lighten(lighten(lighten(lighten(lighten(response.o.todayCLR))))) + "; border-color: " + response.o.todayCLR + "; }\n"
+			css += ".dp-today, .dp-today-selected, .st-dtitle-down, .st-bg-today, .st-dtitle-today, .tg-col-today { border-color: " + response.o.todayCLR + "; }\n"
 		}
+		if (response.o.weekends){
+			css += ".tg-weekend, tr:first-child > .st-s, .st-bg-table td:first-child, .st-grid tr:first-child td:first-child, .st-bg-table td:last-child, .st-grid tr:first-child td:last-child { background: rgba(0,0,0,.05) !important; }\n";
+			css += ".st-dtitle { border-top: 0 !important; }\n";
+		}		
 		if (response.o.hours)
 			css += ".tg-time-pri { font-size: " + response.o.Hsize + "; font-weight: " + response.o.Hweight + "; color: " + response.o.Hcolor + "; }\n"
 		if (response.o.corners)
@@ -62,7 +75,7 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += ".gbh, .gbd { border: 0 !important; }\n";
 	// HEADER
 		if (response.o.header || response.o.gbarH)
-			css += "[min ~= 'hideH'], [min ~= 'hideH'] *, [min ~= 'hideG'], [min ~= 'hideG'] * { opacity: 0; height: 0px !important; }\n";
+			css += "[min ~= 'hideH'], [min ~= 'hideH'] *, [min ~= 'hideG'], [min ~= 'hideG'] * { opacity: 0; z-index: -9999; height: 0px !important; }\n";
 		if (response.o.header) {
 			//css += "[min ~= 'hideH'] #ntowner { margin-top: -20px !importnat; opacity: 1 !important; }\n";
 		}

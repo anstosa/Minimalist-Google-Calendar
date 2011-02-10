@@ -1,10 +1,8 @@
 == ANNOUNCEMENTS ==
 
-  Officially dropping the beta tag but just like th early days of Minimalist for Gmail,
-  it's very much a developing product.
+  Officially dropping the beta tag but just like the early days of Minimalist for Gmail, it's very much a developing product.
 
-  My efforts will be primarily focused here until I can work out all the kinks and get a
-  functional, robust, and stable Google Calendar enhancer.
+  My efforts will be primarily focused here until I can work out all the kinks and get a functional, robust, and stable extension.
 
 
 == WHAT DOES IT DO? ==
@@ -24,12 +22,14 @@
   The following elements can be modified individually:
  == GENERAL
   * Hide Minimalist for Google Calendar options icon
-  * Customize theme color
+  * Rounded corners on input fields and textareas
+  * Custom CSS input
+ == THEME
+  * Customize background color
+  * Customize border color
   * Customize hours style
   * Customize today highlight color
   * Customize button colors
-  * Rounded corners on input fields and textareas
-  * Custom CSS input
  == GOOGLE BAR
   * Hide Google bar [click to toggle when hidden]
   * Make Google bar invisible until hover
@@ -117,7 +117,14 @@
 
 == CHANGELOG ==
 
- == 1.0.0
+ == 0.6.1 [10 Feb]
+  * Added: Show current date in favicon
+  * Added: Custom background color
+  * Added: Custom link color
+  * Added: Dim weekends
+  * Fixed: 2nd custom link always disabled "Calendar"
+  * Fixed: unclickable top nav with header hidden
+ == 0.6.0
   * First!
 
 

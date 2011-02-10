@@ -12,6 +12,21 @@
 		//---- COLOR PICKERS ----//
 		(function($){
 			var initLayout = function() {
+				$('#backCLR').ColorPicker({
+					color: localStorage["backCLR"],
+					onShow: function (colpkr) {
+						$(colpkr).fadeIn(500);
+						return false;
+					},
+					onHide: function (colpkr) {
+						$(colpkr).fadeOut(500);
+						return false;
+					},
+					onChange: function (hsb, hex, rgb) {
+						$('#backCLR div').css('backgroundColor', '#' + hex);
+						localStorage["backCLR"] = "#" + hex;
+					}
+				});
 				$('#borderCLR').ColorPicker({
 					color: localStorage["borderCLR"],
 					onShow: function (colpkr) {
@@ -25,6 +40,21 @@
 					onChange: function (hsb, hex, rgb) {
 						$('#borderCLR div').css('backgroundColor', '#' + hex);
 						localStorage["borderCLR"] = "#" + hex;
+					}
+				});
+				$('#linkCLR').ColorPicker({
+					color: localStorage["linkCLR"],
+					onShow: function (colpkr) {
+						$(colpkr).fadeIn(500);
+						return false;
+					},
+					onHide: function (colpkr) {
+						$(colpkr).fadeOut(500);
+						return false;
+					},
+					onChange: function (hsb, hex, rgb) {
+						$('#linkCLR div').css('backgroundColor', '#' + hex);
+						localStorage["linkCLR"] = "#" + hex;
 					}
 				});
 				$('#Hcolor').ColorPicker({
@@ -155,6 +185,7 @@
 		</div>
 		<div id="refresh">
 			<strong>Settings saved!</strong><br /><a href="#" onclick="javascript:chrome.extension.sendRequest({action: 'reload'},function(){});">Refresh Google Calender to apply</a>
+			<br /><br /><span style="opacity:.5;">Some changes require browser restart</span>
 		</div>
 		<div id="refreshEI">
 			<strong>Import successful!</strong><br /><a href="#" onclick="javascript:chrome.extension.sendRequest({action: 'reload'},function(){});">Refresh Google Calender to apply</a>
@@ -169,6 +200,7 @@
 		<!-- NAVIGATION -->
 		<ul>
 			<li><a href="#gen" class="" id="gen" onclick="navigate('gen')">General</a></li>
+			<li><a href="#the" class="" id="the" onclick="navigate('the')">Theme</a></li>
 			<li><a href="#goo" class="" id="goo" onclick="navigate('goo')">Google Bar</a></li>
 			<li><a href="#hea" class="" id="hea" onclick="navigate('hea')">Header</a></li>
 			<li><a href="#mai" class="" id="mai" onclick="navigate('mai')">Main</a></li>
@@ -194,18 +226,73 @@
 			</div>
 		</section>
 		<section>
-			<h3>Theme</h3>
+			<h3>favicon date</h3>
+			<div>
+				<input type="checkbox" id="favicon" />
+					&nbsp;<label for="favicon" title="">Show date in favicon</label><br />
+			</div>
+		</section>
+		<section>
+			<h3>Animate Transitions</h3>
+			<div>
+				<input type="checkbox" id="trans" />
+					&nbsp;<label for="trans" title="">Show transition animations</label><br />
+					<span class="note">Very subtle. Not possible for all transitions.</span><br />
+					<!-- <span class="note"><strong>Note:</strong> May decrease performance slightly on slower machines</span> -->
+			</div>
+		</section>
+		<section>
+			<h3>Fields &amp; Input</h3>
+			<div>
+				<input type="checkbox" id="corners" />
+					&nbsp;<label for="corners" title="">Round corners</label><br />
+			</div>
+		</section>
+		<section>
+			<h3>Custom CSS</h3>
+			<div>
+				<input type="checkbox" id="customCSS" />
+					&nbsp;<label for="customCSS" title="">Use custom CSS</label><br />
+					<textarea id="customCSSval" rows="5" cols="40" style="margin-left: 25px;"></textarea>
+					<br />
+					<span class="note">Don't know CSS? <a href="https://groups.google.com/forum/?hl=en#!forum/minimalist-google-calendar" target="_blank">Ask questions and see examples here</a></span>
+			</div>
+		</section>
+	</div>
+	<div class="OPTmain" id="OPTthe">
+		<h1 class="dark">Google Calendar <span>| theme</span></h1>
+		<section>
+			<h3>Background</h3>
+			<div>
+				<input type="checkbox" id="backC" />
+					&nbsp;<label for="backC" title="">Change background color</label><div c id="backCLR"><div id="backCLRsub" style="background-color: #fff;"></div></div><br />
+
+			</div>
+		</section>
+		<section>
+			<h3>Borders</h3>
 			<div>
 				<input type="checkbox" id="borders" />
-					&nbsp;<label for="borders" title="">Change border/background color</label><div c id="borderCLR"><div id="borderCLRsub" style="background-color: #BBCCFF;"></div></div><br />
+					&nbsp;<label for="borders" title="">Change border colors</label><div c id="borderCLR"><div id="borderCLRsub" style="background-color: #BBCCFF;"></div></div><br />
 					<span class="note">NOTE: Dark/main color. Lighter tint calculated automatically</span><br />
 			</div>
 		</section>
 		<section>
-			<h3>Today  Highlight</h3>
+			<h3>Links</h3>
+			<div>
+				<input type="checkbox" id="linkC" />
+					&nbsp;<label for="linkC" title="">Change link color</label><div c id="linkCLR"><div id="linkCLRsub" style="background-color: #2200cc;"></div></div><br />
+			</div>
+		</section>
+		<section>
+			<h3>Highlights</h3>
 			<div>
 				<input type="checkbox" id="todayH" />
 					&nbsp;<label for="todayH" title="">Change today color</label><div c id="todayCLR"><div id="todayCLRsub" style="background-color: #FAD163;"></div></div><br />
+				<input type="checkbox" id="weekends" />
+					&nbsp;<label for="weekends" title="">Dim weekends</label><br />
+				<!-- <input type="checkbox" id="past" />
+					&nbsp;<label for="past" title="">Dim past dates</label> -->
 			</div>
 		</section>
 		<section>
@@ -258,32 +345,6 @@
 							</tr>
 						</table>
 				</div>
-		</section>
-		<section>
-			<h3>Fields &amp; Input</h3>
-			<div>
-				<input type="checkbox" id="corners" />
-					&nbsp;<label for="corners" title="">Round corners</label><br />
-			</div>
-		</section>
-		<section>
-			<h3>Animate Transitions</h3>
-			<div>
-				<input type="checkbox" id="trans" />
-					&nbsp;<label for="trans" title="">Show transition animations</label><br />
-					<span class="note">Very subtle. Not possible for all transitions.</span><br />
-					<!-- <span class="note"><strong>Note:</strong> May decrease performance slightly on slower machines</span> -->
-			</div>
-		</section>
-		<section>
-			<h3>Custom CSS</h3>
-			<div>
-				<input type="checkbox" id="customCSS" />
-					&nbsp;<label for="customCSS" title="">Use custom CSS</label><br />
-					<textarea id="customCSSval" rows="5" cols="40" style="margin-left: 25px;"></textarea>
-					<br />
-					<span class="note">Don't know CSS? <a href="https://groups.google.com/forum/?hl=en#!forum/minimalist-google-calendar" target="_blank">Ask questions and see examples here</a></span>
-			</div>
 		</section>
 	</div>
 	<div class="OPTmain" id="OPTgoo">
@@ -637,29 +698,32 @@
 		<section>
 			<h3>Announcements</h3>
 			<div>
-				Huge thanks to all my beta testers, you all had great ideas, many of which I am still working on.<br /><br />
-				This extension will be getting tons of features and bugfixes and problems and ideas arise over the next couple weeks.
+				There are some great ideas coming into the <a href="http://code.google.com/p/minimalist-google-calendar/issues/list" target="_blank">Issue Tracker</a>, let me know if you have feature ideas or bugs there
 			</div>
 		</section>
-		<!-- <section>
+		<section>
 			<h3>What's new</h3>
 			<div>
 				Full changelog on <a href="http://code.google.com/p/minimalist-google-calendar/#CHANGELOG" target="_blank">Google Code</a><br /><br />
 				<strong>General</strong>
 				<ul>
-					<li>Change theme color</li>
-					<li>Change today highlight color</li>
-					<li>Custom style for hours list</li>
+					<li>Added: Show current date in favicon</li>
+				</ul>
+				<strong>Theme</strong>
+				<ul>
+					<li>Added: Custom background color</li>
+					<li>Added: Custom link color</li>
+					<li>Added: Dim weekends</li>
 				</ul>
 				<strong>Google Bar</strong>
 				<ul>
-					<li></li>
+					<li>Fixed: 2nd custom link always disabled "Calendar"</li>
 				</ul>
 				<strong>Header</strong>
 				<ul>
-					<li></li>
+					<li>Fixed: unclickable top nav with header hidden</li>
 				</ul>
-				<strong>Main</strong>
+				<!-- <strong>Main</strong>
 				<ul>
 					<li></li>
 				</ul>
@@ -671,9 +735,9 @@
 				<ul>
 					<li></li>
 					<li><a href="http://code.google.com/p/minimalist-google-calendar/#CHANGELOG" target="_blank"><strong>bugfixes</strong></a></li>
-				</ul>
+				</ul> -->
 			</div>
-		</section> -->
+		</section>
 		<section>
 			<h3>Rate &amp; Review</h3>
 			<div>

@@ -2,7 +2,9 @@ $(function(){
 	//---- LOAD ----//
 		// defaults
 		if (!localStorage["options"]) localStorage["options"] = "{}";
+		if (!localStorage["backCLR"]) localStorage["backCLR"] = "#ffffff";
 		if (!localStorage["borderCLR"]) localStorage["borderCLR"] = "#BBCCFF";
+		if (!localStorage["linkCLR"]) localStorage["linkCLR"] = "#2200cc";
 		if (!localStorage["Hcolor"]) localStorage["Hcolor"] = "#bbbbbb";
 		if (!localStorage["todayCLR"]) localStorage["todayCLR"] = "#FAD163";
 		if (!localStorage["BTNcolor"]) localStorage["BTNcolor"] = "#000000";
@@ -18,12 +20,20 @@ $(function(){
 		var o = JSON.parse(localStorage['options']);
 		// GENERAL
 			$("#mcicon").attr('checked', o.mcicon);
+			$("#favicon").attr('checked', o.favicon);
+			$("#backC").attr('checked', o.backC);
+				if ((o.backCLR != null) && (o.backCLR != ""))
+					$("#backCLRsub").attr("style","background-color:" + o.backCLR + ";");
 			$("#borders").attr('checked', o.borders);
 				if ((o.borderCLR != null) && (o.borderCLR != ""))
 					$("#borderCLRsub").attr("style","background-color:" + o.borderCLR + ";");
+			$("#linkC").attr('checked', o.linkC);
+				if ((o.linkCLR != null) && (o.linkCLR != ""))
+					$("#linkCLRsub").attr("style","background-color:" + o.linkCLR + ";");
 			$("#todayH").attr('checked', o.todayH);
 				if ((o.todayCLR != null) && (o.todayCLR != ""))
 					$("#todayCLRsub").attr("style","background-color:" + o.todayCLR + ";");
+			$("#weekends").attr('checked', o.weekends);
 			$("#hours").attr('checked', o.hours);
 				if ((o.Hcolor != null) && (o.Hcolor != ""))
 					$("#Hcolor").attr("style","background-color:" + o.Hcolor + ";");	
@@ -157,10 +167,16 @@ $(function(){
 		localStorage['options'] = JSON.stringify({
 			// GENERAL
 				"mcicon":$("#mcicon").attr('checked'),
+				"favicon":$("#favicon").attr('checked'),
+				"backC":$("#backC").attr('checked'),
+					"backCLR":localStorage["backCLR"],
 				"borders":$("#borders").attr('checked'),
 					"borderCLR":localStorage["borderCLR"],
+				"linkC":$("#linkC").attr('checked'),
+					"linkCLR":localStorage["linkCLR"],
 				"todayH":$("#todayH").attr('checked'),
 					"todayCLR":localStorage["todayCLR"],
+				"weekends":$("#weekends").attr('checked'),
 				"hours":$("#hours").attr('checked'),
 					"Hcolor":localStorage["Hcolor"],
 					"Hweight":$("#Hweight").val(),
@@ -254,17 +270,22 @@ $(function(){
 	//---- SAVE LISTENERS ----//
 	document.getElementById("OPTgen").addEventListener("keyup", save, false);
 	document.getElementById("OPTgen").addEventListener("click", save, false);
+	document.getElementById("OPTthe").addEventListener("click", save, false);
 	document.getElementById("OPTgoo").addEventListener("keyup", save, false);
 	document.getElementById("OPTgoo").addEventListener("click", save, false);
 	document.getElementById("OPThea").addEventListener("keyup", save, false);
 	document.getElementById("OPThea").addEventListener("click", save, false);
-	document.getElementById("OPTmai").addEventListener("keyup", save, false);
 	document.getElementById("OPTmai").addEventListener("click", save, false);
 	document.getElementById("OPTgat").addEventListener("keyup", save, false);
 	document.getElementById("OPTgat").addEventListener("click", save, false);
 	document.getElementById("EIC_1").addEventListener("keyup", save, false);
 	document.getElementById("EIC_2").addEventListener("keyup", save, false);
 	document.getElementById("EIC_3").addEventListener("keyup", save, false);
+	var pickers = document.getElementsByClassName("colorPicker");
+	for (var i = 0; i < pickers.length; i++) {
+		pickers[i].addEventListener("click", save, false);
+		pickers[i].addEventListener("keyup", save, false);
+	}
 	//---- END SAVE LISTENERS ----//
 	
 	//---- IMAGE PREVIEW ----//
@@ -358,6 +379,8 @@ function export(EIid) {
 		prefOut[6] = localStorage["BTNbottom"];
 		prefOut[7] = localStorage["BTNtop"];
 		prefOut[8] = localStorage["customCSSval"];
+		prefOut[9] = localStorage["backCLR"];
+		prefOut[10] = localStorage["linkCLR"];
 	var prefsOut = prefOut[0];	// fencepost
 	for (var i = 1; i <= 8; i++) {
 		prefsOut += '\n' + prefOut[i];
@@ -378,6 +401,8 @@ function import(EIid) {
 		localStorage["BTNbottom"] = prefIn[6];
 		localStorage["BTNtop"] = prefIn[7];
 		localStorage["customCSSval"] = prefIn[8];
+		localStorage["backCLR"] = prefIn[9];
+		localStorage["linkCLR"] = prefIn[10];
 	window.location.hash = "imps";
 	window.location.reload();
 }
