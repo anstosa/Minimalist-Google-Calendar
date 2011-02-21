@@ -44,17 +44,17 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		}
 		if (response.o.linkC)
 			css += "[class *= 'link'], [id *= 'link'], [class *= 'lk'], [id *= 'lk'], .st-more, .mv-dayname, .dp-sb-cur, .mg-print, .mg-refresh, .ui-dtsr-unselected, .qnb-quickadd, a, a[class *= 'gb'] { color: " + response.o.linkCLR + " !important; }\n";
-		if (response.o.todayH) {
-			css += ".st-dtitle-today, [class *= 'st-bg-td'], .wk-today { background-color: " + response.o.todayCLR + "; border-color: " + response.o.todayCLR + "; }\n"
-			css += ".dp-today-selected, .st-bg-today, [class *= 'st-bg-td'], .tg-today { background-color: " + lighten(lighten(lighten(lighten(lighten(response.o.todayCLR))))) + "; border-color: " + response.o.todayCLR + "; }\n"
-			css += ".dp-today, .dp-today-selected, .st-dtitle-down, .st-bg-today, .st-dtitle-today, .tg-col-today { border-color: " + response.o.todayCLR + "; }\n"
-		}
 		if (response.o.weekends){
 			if (response.o.weekendM)
-				css += ".tg-weekend, tr:first-child > .st-s, .st-bg-table td:nth-child(6), .st-grid tr:first-child td:nth-child(6), .st-bg-table td:last-child, .st-grid tr:first-child td:last-child { background: rgba(0,0,0,.05) !important; }\n";
-			else css += ".tg-weekend, tr:first-child > .st-s, .st-bg-table td:first-child, .st-grid tr:first-child td:first-child, .st-bg-table td:last-child, .st-grid tr:first-child td:last-child { background: rgba(0,0,0,.05) !important; }\n";
-			css += ".st-dtitle { border-top: 0 !important; }\n";
-		}		
+				css += ".tg-weekend, .st-bg-table td:nth-child(6):not(.st-bg-today), .st-grid tr:first-child td:nth-child(6):not(.st-dtitle-today), .st-bg-table td:last-child:not(.st-bg-today):not(.st-dtitle-today), .st-grid tr:first-child td:last-child { background-color: rgba(0,0,0,.05) !important; }\n";
+			else css += ".tg-weekend, .st-bg-table td:first-child:not(.st-bg-today), .st-grid tr:first-child td:first-child:not(.st-dtitle-today), .st-bg-table td:last-child:not(.st-bg-today):not(.st-dtitle-today), .st-grid tr:first-child td:last-child { background-color: rgba(0,0,0,.05) !important; }\n";
+			//css += ".st-dtitle:not(.st-dtitle-down) { border-top: 0 !important; }\n";
+		}	
+		if (response.o.todayH) {
+			css += ".st-dtitle-today, [class *= 'st-bg-td'], .wk-today { background-color: " + response.o.todayCLR + " !important; border-color: " + response.o.todayCLR + " !important; }\n"
+			css += ".dp-today-selected, .st-bg-today, [class *= 'st-bg-td'], .tg-today { background-color: " + lighten(lighten(lighten(lighten(lighten(response.o.todayCLR))))) + " !important; border-color: " + response.o.todayCLR + " !important; }\n"
+			css += ".dp-today, .dp-today-selected, .st-dtitle-down, .st-bg-today, .st-dtitle-today, .tg-col-today { border-color: " + response.o.todayCLR + " !important; }\n"
+		}
 		if (response.o.hours)
 			css += ".tg-time-pri { font-size: " + response.o.Hsize + "; font-weight: " + response.o.Hweight + "; color: " + response.o.Hcolor + "; }\n"
 		if (response.o.corners)

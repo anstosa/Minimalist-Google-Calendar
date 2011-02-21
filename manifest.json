@@ -1,6 +1,6 @@
 {
 	"name": "Minimalist for Google Calendar™",
-	"version": "0.6.3",
+	"version": "0.6.4",
 	"description": "Individually hide almost 50 interface elements and add custom logos, and more...",
 	"icons": {
          "16": "img/icons/icon16.png",
@@ -13,16 +13,16 @@
 	},
 	"background_page": "background.html",
 	"content_scripts": [ {
-		"matches": [ "*://www.google.com/calendar/*" ],
+		"matches": [ "http://www.google.com/calendar/*", "https://www.google.com/calendar/*" ],
 		"js": [ "js/stylesheet.js" , "js/active.js", "js/favicon.js" ],
 		"run_at": "document_end",
 		"all_frames": true
 	}, {
-		"matches": [ "*://www.google.com/voice/*" ],
+		"matches": [ "http://www.google.com/voice/*", "https://www.google.com/voice/*" ],
 		"js": [ "js/voice.js" ],
 		"all_frames": true
 	}, {
-		"matches": [ "*://www.google.com/reader/*" ],
+		"matches": [ "http://www.google.com/reader/*", "https://www.google.com/reader/*" ],
 		"js": [ "js/reader.js" ],
 		"all_frames": true
 	} ],
@@ -31,6 +31,7 @@
 	"permissions": [
 		"notifications",
 		"tabs",
-		"*://www.google.com/calendar/*"
+		"http://www.google.com/calendar/*",
+		"https://www.google.com/calendar/*"
 	]
 }
