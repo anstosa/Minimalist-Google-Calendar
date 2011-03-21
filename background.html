@@ -41,7 +41,7 @@
 		//---- END TALK TO ICON ----//
 
 		//---- TALK TO SCRIPTS ----//
-		var joy = true; // whether or not Minimalist for Calendar is activated [via icon]
+		var joy = true; // whether or not Minimalist for Google Calendar is activated [via icon]
 		chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
 			if (request.elements == "o" && joy) {
 				sendResponse({

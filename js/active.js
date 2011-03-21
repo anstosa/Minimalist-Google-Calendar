@@ -90,7 +90,7 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 			console.log("MINIMALIST GOOGLE CALENDAR: hiding Google Bar & adding the header hook...");
 			try {
 				var tbar = document.getElementsByClassName("onegpad")[0];
-					minimalist(tbar, false, "hideG")
+					minimalist(tbar, false, "hideG");
 				var toggleG = document.createElement("div");
 					toggleG.setAttribute("id", "gbarToggle");
 					tbar.parentNode.insertBefore(toggleG, tbar);
@@ -101,7 +101,7 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 			console.log("MINIMALIST GOOGLE CALENDAR: hiding header and adding toggle...");
 			var head = document.getElementById("topBar");
 			try {
-				minimalist(head, false, "hideH")
+				minimalist(head, false, "hideH");
 				if (!response.o.gbarH) {
 					var toggle = document.createElement("div");
 					toggle.setAttribute("id", "headerToggle");
@@ -207,13 +207,13 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 					f_guser = true;
 				}
 			} catch (e) { console.error(e); }
-		}
+		}		
 		if (response.o.user && !f_user && f_guser) {
 			console.log("MINIMALIST GOOGLE CALENDAR: hiding signed in...");
 			try {
 				var user = guser.childNodes[2];
 					user.setAttribute("style","display: none !important;");
-					user.nextSibling.setAttribute("style","display: none !important;");
+					user.parentNode.removeChild(user.nextSibling);
 				f_user = true;
 			} catch (e) { console.error(e); }
 		}
@@ -230,7 +230,7 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 			try {
 				var settings = guser.childNodes[5];
 					settings.setAttribute("style","display: none !important;");
-					//settings.previousSibling.firstChild.firstChild.nextSibling.setAttribute("style","display: none !important;");
+					settings.parentNode.removeChild(settings.nextSibling);
 				f_settings = true;
 			} catch (e) { console.error(e); }
 		}
@@ -239,7 +239,7 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 			try {
 				var help = guser.childNodes[7];
 					help.setAttribute("style","display: none !important;");
-					//help.nextSibling.setAttribute("style","display: none !important;");
+					help.parentNode.removeChild(help.nextSibling);
 				f_help = true;
 			} catch (e) { console.error(e); }
 		}
@@ -248,7 +248,7 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 			try {
 				var out = guser.childNodes[9];
 					out.setAttribute("style","display: none !important;");
-					//out.previousSibling.setAttribute("style","display: none !important;");
+					out.parentNode.removeChild(out.previousSibling);
 				f_out = true;
 			} catch (e) { console.error(e); }
 		}

@@ -41,6 +41,7 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += ".ui-dtsr-unselected, .tg-times-pri, .tg-times-sec { background: " + lighten(lighten(response.o.borderCLR)) + " !important; background-color: " + lighten(lighten(response.o.borderCLR)) + " !important; }\n";
 			css += ".ep-ts, .ui-dtsr-selected, #scrolltimedeventswk, .nb_0, .sng-wrapper, .printborder.mainGrid, .printborder.t-chrome { border-color: " + response.o.borderCLR + " !important; }\n";
 			css += ".ui-dtsr-selected { border-bottom-color: #fff !important; }\n";
+			css += "input:focus, textarea:focus { outline: 0; margin: 0px !important; border: 2px solid " + lighten(lighten(response.o.borderCLR)) + " !important; }\n";
 		}
 		if (response.o.linkC)
 			css += "[class *= 'link'], [id *= 'link'], [class *= 'lk'], [id *= 'lk'], .st-more, .mv-dayname, .dp-sb-cur, .mg-print, .mg-refresh, .ui-dtsr-unselected, .qnb-quickadd, a, a[class *= 'gb'] { color: " + response.o.linkCLR + " !important; }\n";
@@ -63,18 +64,21 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += "* { -webkit-transition-property: height, background-color, border-color, color, opacity, width; -webkit-transition-duration: .15s; -webkit-transition-timing-function: ease-out; }\n";
 	// GOOGLE BAR
 		if (response.o.gbar)
-			css += "#gbar { display: none !important; }\n";
+			css += "#gbar, #gbz { display: none !important; }\n";
 		if (response.o.gbarH) {
+			css += "#gbx1, #gbx2, #gbz, #gbg { top: 10px !important; }\n";
+			css += "#gbx3, #gbx4 { top: 12px !important; }\n";
+			css += "#gbs { top: 42px !important; }\n";
 			css += "#gbarToggle { background-color: rgb(0,0,0,0); height: 10px !important; cursor: pointer !important;}\n";
 			css += "#gbarToggle:hover { background-color: rgba(0,0,0,.5); }\n";
 			css += ".gbh, .gbd { top: 34px; }\n";
 		}
 		if (response.o.gbarO) {
-			css += "#guser, #gbar { opacity: 0; -webkit-transition-delay: .25s; }\n";
-			css += "div.onegpad:hover #gbar, div.onegpad:hover #guser { opacity: 1; }\n"
+			css += "#gbz, #gbg, #guser, #gbar { opacity: 0; -webkit-transition-delay: .25s; }\n";
+			css += "div.onegpad:hover #gbz, div.onegpad:hover #gbg, div.onegpad:hover #gbar, div.onegpad:hover #guser { opacity: 1; }\n"
 		}
 		if (response.o.gbarB)
-			css += ".gbh, .gbd { border: 0 !important; }\n";
+			css += ".gbh, .gbd, #gbx3, #gbx4 { background-image: none !important; background-color: rgba(255,255,255,0) !important; border: 0 !important; }\n";
 	// HEADER
 		if (response.o.header || response.o.gbarH) {
 			css += "[min ~= 'hideH'], [min ~= 'hideH'] *, [min ~= 'hideG'], [min ~= 'hideG'] * { opacity: 0; margin: 0 !important; padding: 0 !important; height: 0 !important; }\n";
@@ -151,16 +155,16 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		}
 		if (response.o.n_cal) {
 			css += "#dp_0 { display: none !important; }\n";
-			css += "#dp_0_b1 + .nb_0 { border-top: 0 !important; }\n";
+			css += "#dp_0 + .nb_0 { border-top: 0 !important; }\n";
 		}
 		if (response.o.n_mine)
-			css += "#dp_0_b1 + .nb_0 { display: none !important; }\n";
+			css += "#dp_0 + .nb_0 { display: none !important; }\n";
 		if (response.o.n_linksM)
 			css += "#calendars_my + .sn-link-container { display: none !important; }\n";
 		if (response.o.n_other)
-			css += "#dp_0_b1 + .nb_0 + .nb_0 { display: none !important; }\n";
+			css += "#dp_0 + .nb_0 + .nb_0 { display: none !important; }\n";
 		if (response.o.n_add)
-			css += "#dp_0_b1 + .nb_0 + .nb_0 #searchAddCalBox { display: none !important; }\n";
+			css += "#dp_0 + .nb_0 + .nb_0 #searchAddCalBox { display: none !important; }\n";
 		if (response.o.n_linksO)
 			css += "#calendars_fav + .sn-link-container { display: none !important; }\n";
 	// CUSTOM

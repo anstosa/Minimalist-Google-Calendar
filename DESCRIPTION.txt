@@ -12,6 +12,26 @@
   Look around the options page to see what it does first hand. Link below.
 
 
+== PERMISSIONS ==
+
+  Learn more about Chrome Extension permissions here: http://www.google.com/support/chrome/bin/answer.py?hl=en&answer=186213
+  If you look as the permissions required by similar extensions in the Web Store, you will see that they are exactly the same
+  so before you make assumptions based on two short and broad statements, please read the following:
+
+ == "tabs"
+  * This permissions results in the "This extensions can access your browsing history" warning.
+  * I *NEVER* access your browsing history.
+  * I need this permission to open tabs. I use this to open the options page on major updates.
+  * This permission is also used to refresh the Google Calendar tab when you save your settings.
+ == "http://*google.com/calendar/*", "https://*google.com/calendar/*"
+  * This permission results in the "This extension can access your data on google.com/calendar" warning.
+  * I *NEVER* access, read, store, or transmit your personal data.
+  * I need this permission to run user scripts behind specific pages in the browser.
+  * These scripts inject Javascript and CSS into Gmail to enhance functionality and hide elements
+
+  Still don't trust me? Go to [https://github.com/anstosa/Minimalist-Google-Calendar] to see the entire source code.
+
+
 == OPTIONS ==
 
   The Options page is easy to use and interactive features:
@@ -22,11 +42,14 @@
   The following elements can be modified individually:
  == GENERAL
   * Hide Minimalist for Google Calendar options icon
+  * Show date in favicon
+  * Show transition animations
   * Rounded corners on input fields and textareas
   * Custom CSS input
  == THEME
   * Customize background color
   * Customize border color
+  * Customize link color
   * Customize hours style
   * Customize today highlight color
   * Customize button colors
@@ -95,28 +118,19 @@
   [http://code.google.com/p/minimalist-google-calendar/issues/list]
 
 
-== PERMISSIONS ==
-
-  Learn more about Chrome Extension permissions here: http://www.google.com/support/chrome/bin/answer.py?hl=en&answer=186213
-  If you look as the permissions required by similar extensions in the Web Store, you will see that they are exactly the same
-  so before you make assumptions based on two short and broad statements, please read the following:
-
- == "tabs"
-  * This permissions results in the "This extensions can access your browsing history" warning.
-  * I *NEVER* access your browsing history.
-  * I need this permission to open tabs. I use this to open the options page on major updates.
-  * This permission is also used to refresh the Google Calendar tab when you save your settings.
- == "http://*google.com/calendar/*", "https://*google.com/calendar/*"
-  * This permission results in the "This extension can access your data on google.com/calendar" warning.
-  * I *NEVER* access, read, store, or transmit your personal data.
-  * I need this permission to run user scripts behind specific pages in the browser.
-  * These scripts inject Javascript and CSS into Gmail to enhance functionality and hide elements
-
-  Still don't trust me? Go to [https://github.com/anstosa/Minimalist-Google-Calendar] to see the entire source code.
-
-
 == CHANGELOG ==
 
+ == 0.6.8 [20 MAR]
+  * Changed: URL bar icons are smaller and lighter to not be intrusive
+ == 0.6.7 [18 MAR]
+  * Changed: Logos to comply with Google's branding guidelines
+ == 0.6.6 [17 MAR]
+  * Fixed: Hide My calendar, other calendars and add calendars box not working
+ == 0.6.5 [16 MAR]
+  * Added: Minimalist for Google Reader info
+  * Fixed: input and textarea borders now match border colors
+  * Fixed: bars remain when hiding Google user bar elements
+  * Fixed: Google Bar features incompatible with new Google Bar
  == 0.6.4 [20 Feb]
   * Added: Donate tab in options
   * Fixed: Install failure on Chrome for Fedora

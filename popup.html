@@ -62,7 +62,7 @@
 			if (localStorage["uncheckedUpdate"] == "true") {
 				chrome.tabs.create({url:chrome.extension.getURL("options.html#update")});
 				chrome.pageAction.setIcon({tabId: tab.id, path:"img/icons/icon19.png"});
-				chrome.pageAction.setTitle({tabId: tab.id, title:"Minimalist for Gmail Options"});
+				chrome.pageAction.setTitle({tabId: tab.id, title:"Minimalist for Google Calendar Options"});
 				localStorage["uncheckedUpdate"] = false;
 			} else {
 				chrome.tabs.create({url:chrome.extension.getURL("options.html")});
