@@ -120,6 +120,8 @@
 
 == CHANGELOG ==
 
+ == 0.6.9 [21 MAR]
+  * Fixed: typo
  == 0.6.8 [20 MAR]
   * Changed: URL bar icons are smaller and lighter to not be intrusive
  == 0.6.7 [18 MAR]
