@@ -37,14 +37,14 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		}
 		if (response.o.borders) {
 			css += ".ep-ea, .ep-ea-bot, #rhstogglecell, #rhstogglecell *, #tc_top > div, #mainnav { background: " + response.o.borderCLR + " !important; background-color: " + response.o.borderCLR + " !important; }\n";
-			css += ".ep-ts, .t-chrome, .ep-gp-sp, .qnb-container, .qnb-container-ph, .wk-weektop, .wk-dummyth { background: " + lighten(response.o.borderCLR) + " !important; background-color: " + lighten(response.o.borderCLR) + " !important; }\n";
+			css += ".ep-ts, .t-chrome, .ep-gp-sp, .qnb-container, .qnb-container-ph, #lvHeader, .wk-weektop, .wk-dummyth { background: " + lighten(response.o.borderCLR) + " !important; background-color: " + lighten(response.o.borderCLR) + " !important; }\n";
 			css += ".ui-dtsr-unselected, .tg-times-pri, .tg-times-sec { background: " + lighten(lighten(response.o.borderCLR)) + " !important; background-color: " + lighten(lighten(response.o.borderCLR)) + " !important; }\n";
 			css += ".ep-ts, .ui-dtsr-selected, #scrolltimedeventswk, .nb_0, .sng-wrapper, .printborder.mainGrid, .printborder.t-chrome { border-color: " + response.o.borderCLR + " !important; }\n";
 			css += ".ui-dtsr-selected { border-bottom-color: #fff !important; }\n";
 			css += "input:focus, textarea:focus { outline: 0; margin: 0px !important; border: 2px solid " + lighten(lighten(response.o.borderCLR)) + " !important; }\n";
 		}
 		if (response.o.linkC)
-			css += "[class *= 'link'], [id *= 'link'], [class *= 'lk'], [id *= 'lk'], .st-more, .mv-dayname, .dp-sb-cur, .mg-print, .mg-refresh, .ui-dtsr-unselected, .qnb-quickadd, a, a[class *= 'gb'] { color: " + response.o.linkCLR + " !important; }\n";
+			css += "[class *= 'link'], [id *= 'link'], [class *= 'lk'], [id *= 'lk'], .st-more, .mv-dayname, .dp-sb-cur, .mg-print, .mg-refresh, .ui-dtsr-unselected, .qnb-quickadd, a:not(.lv-event-title), a[class *= 'gb'] { color: " + response.o.linkCLR + " !important; }\n";
 		if (response.o.weekends){
 			if (response.o.weekendM)
 				css += ".tg-weekend, .st-bg-table td:nth-child(6):not(.st-bg-today), .st-grid tr:first-child td:nth-child(6):not(.st-dtitle-today), .st-bg-table td:last-child:not(.st-bg-today):not(.st-dtitle-today), .st-grid tr:first-child td:last-child { background-color: rgba(0,0,0,.05) !important; }\n";

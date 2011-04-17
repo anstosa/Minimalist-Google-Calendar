@@ -160,6 +160,9 @@ $(function(){
 			$("#n_add").attr('checked', o.n_add);
 			$("#n_linksO").attr('checked', o.n_linksO);
 		localStorage["uncheckedUpdate"] = false;
+		$("#EIC_1").val(localStorage["EIC_1"]);
+		$("#EIC_2").val(localStorage["EIC_2"]);
+		$("#EIC_3").val(localStorage["EIC_3"]);
 	}
 	//---- END LOAD ----//
 	
@@ -384,7 +387,7 @@ function export(EIid) {
 		prefOut[9] = localStorage["backCLR"];
 		prefOut[10] = localStorage["linkCLR"];
 	var prefsOut = prefOut[0];	// fencepost
-	for (var i = 1; i <= 8; i++) {
+	for (var i = 1; i <= 10; i++) {
 		prefsOut += '\n' + prefOut[i];
 	}
 	document.getElementById(EIid).innerHTML = prefsOut;

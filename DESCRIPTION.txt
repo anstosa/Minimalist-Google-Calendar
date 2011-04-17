@@ -120,6 +120,13 @@
 
 == CHANGELOG ==
 
+ == 0.6.11 [12 APR]
+  * Fixed: Custom settings fields not loading from memory
+  * Fixed: Export loop not catching background or link colors
+  * Fixed: Custom Google Links not applying to new Google Bar
+ == 0.6.10 [27 MAR]
+  * Fixed: color-coded links in agenda view over-riden by custom link color
+  * Fixed: Agenda view header not affected by custom accent color
  == 0.6.9 [21 MAR]
   * Fixed: typo
  == 0.6.8 [20 MAR]
