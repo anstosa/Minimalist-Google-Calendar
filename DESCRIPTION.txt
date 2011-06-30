@@ -1,8 +1,8 @@
 == ANNOUNCEMENTS ==
 
-  Officially dropping the beta tag but just like the early days of Minimalist for Gmail, it's very much a developing product.
-
-  My efforts will be primarily focused here until I can work out all the kinks and get a functional, robust, and stable extension.
+  Should be fully compatible with the new Gcal UI.
+  
+  Note: The default sidebar width has changed from 180 ot 145. You'll have to change that in your settings if you want it to appear correctly.
 
 
 == WHAT DOES IT DO? ==
@@ -120,6 +120,17 @@
 
 == CHANGELOG ==
 
+ 
+ == 0.7.00 [30]
+  * Added: Full support for new UI! (theme settings work but most are no necessary)
+  * Changed: Buttons no longer skinned by default
+ == 0.6.14 [18 MAY]
+  * Fixed: Unreliability in 13.*
+ == 0.6.13 [17 MAY]
+  * Fixed: Typo in background.html
+ == 0.6.12 [17 MAY]
+  * Fixed: Typo on options page
+  * Fixed: Workaround for Chromium 82784: http://goo.gl/XZMSr. No icon for affected builds
  == 0.6.11 [12 APR]
   * Fixed: Custom settings fields not loading from memory
   * Fixed: Export loop not catching background or link colors

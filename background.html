@@ -3,7 +3,7 @@
 	<script>
 		// ---- CHECK UPDATE ----//
 		var major = 2;
-		var minor = 1;
+		var minor = 2;
 		if (localStorage["major"] == undefined) {
 			localStorage["major"] = 0;
 		}
@@ -22,8 +22,6 @@
 		// ---- END CHECK UPDATE ----//
 
 		//---- TALK TO ICON ----//
-		chrome.tabs.onUpdated.addListener(checkForGcal);
-
 		function checkForGcal(tabId, changeInfo, tab) {
 			if (localStorage["uncheckedUpdate"] == "true") {
 				chrome.pageAction.setIcon({tabId: tab.id, path: "img/icons/icon19_update.png"});
@@ -38,6 +36,7 @@
 				chrome.pageAction.show(tabId);
 			}
 		};
+		chrome.tabs.onUpdated.addListener(checkForGcal);
 		//---- END TALK TO ICON ----//
 
 		//---- TALK TO SCRIPTS ----//

@@ -22,18 +22,11 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += ".goog-imageless-button-top-shadow { display: none; }\n";
 			css += ".goog-imageless-button-outer-box, .goog-imageless-button, .goog-imageless-button-disabled .goog-imageless-button-outer-box, .goog-imageless-button-disabled .goog-imageless-button { border-color: " + response.o.BTNborder + " !important; }\n";
 			css += ".goog-imageless-button-disabled .goog-imageless-button-outer-box { background: -webkit-gradient(linear,0% 40%,0% 70%,from(" + response.o.BTNbottom + "),to(" + response.o.BTNbottom + ")) !important; }\n";
-		} else {
-			css += ".goog-imageless-button-content { color: #000 !important; }\n";
-			css += ".goog-imageless-button { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#f9f9f9),to(#ded5de)) !important; }\n";
-			css += ".goog-imageless-button-checked { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#ded5de),to(#f9f9f9)) !important; }\n";
-			css += ".goog-imageless-button-top-shadow { display: none; }\n";
-			css += ".goog-imageless-button-outer-box, .goog-imageless-button, .goog-imageless-button-disabled .goog-imageless-button-outer-box, .goog-imageless-button-disabled .goog-imageless-button { border-color: #bbb !important; }\n";
-			css += ".goog-imageless-button-disabled .goog-imageless-button-outer-box { background: -webkit-gradient(linear,0% 40%,0% 70%,from(#f9f9f9),to(#f9f9f9)) !important; }\n";
 		}
 		if (response.o.backC) {
 			css += ".dp-onmonth-selected { background: " + lighten(lighten(lighten(lighten(response.o.backCLR)))) + " !important; }\n";
 			css += ".dp-weekend-selected { background: " + lighten(lighten(response.o.backCLR)) + " !important; }\n";
-			css += "body, #nav, #searchAddCalBox, .dpdiv, .dpi-popup, .dp-weekday, .dp-weekend, .dp-weekendh, #weekViewAllDaywk, #tgTable, .chromeColor, .calList, .calHeader { background: " + response.o.backCLR + " !important;  background-color: " + response.o.backCLR + " !important; }\n";
+			css += "body, #nav, #mainnav, #searchAddCalBox, .dpdiv, .dpi-popup, .dp-weekday, .dp-weekend, .dp-weekendh, #weekViewAllDaywk, #tgTable, .chromeColor, .calList, .calHeader { background: " + response.o.backCLR + " !important;  background-color: " + response.o.backCLR + " !important; }\n";
 		}
 		if (response.o.borders) {
 			css += ".ep-ea, .ep-ea-bot, #rhstogglecell, #rhstogglecell *, #tc_top > div, #mainnav { background: " + response.o.borderCLR + " !important; background-color: " + response.o.borderCLR + " !important; }\n";
@@ -96,19 +89,20 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += "#headerToggle:hover { background-color: rgba(0,0,0,.15); }\n";
 		}
 		if (response.o.logo) {
-			css += ".logoparent { background-image: url(" + response.o.logoSRC + ") !important; background-position: 0% 0%; background-repeat: no-repeat no-repeat; }\n";
+			css += ".domainlogoparent img { opacity: 0 !important; }\n";
+			css += ".logoparent, .domainlogo { background-image: url(" + response.o.logoSRC + ") !important; background-position: 0% 0%; background-repeat: no-repeat no-repeat; }\n";
 			css += ".logoparent > img { visibility: hidden !important; }\n";
 		}
 		if (response.o.logoH) {
-			css += ".logoparent { display: none !important; }\n";
+			css += ".domainlogoparent, .logoparent { display: none !important; }\n";
 			css += "#topCtrls { padding-left: 6px !important; }\n";
 		}
 		if (response.o.s_all)
-			css += "#topCtrls { display: none !important; }\n";
+			css += "#topCtrls, #srreg { display: none !important; }\n";
 		if (response.o.s_button)
-			css += "#topCtrls div.goog-imageless-button { display: none !important; }\n";
+			css += "#topCtrls div.goog-imageless-button, #srreg div.goog-imageless-button { display: none !important; }\n";
 		if (response.o.s_link)
-			css += "#topCtrls form span { display: none !important; }\n";
+			css += "#topCtrls form span, #srreg form span { display: none !important; }\n";
 	// MAIN
 		if (response.o.t_top) {
 			css += "#fastui-topnav-container { display: none !important; }\n";
@@ -119,7 +113,7 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += "#sidebar > .qnb-container { height: 23px !important; }\n";
 		}
 		if (response.o.n_quick)
-			css += "#sidebar > div > span { display: none !important; }\n";
+			css += "#sidebar > div > span, [title *= 'Quick add'] { display: none !important; }\n";
 		if (response.o.t_today)
 			css += "div[id *= 'todayButton'] { display: none !important; }\n";
 		if (response.o.t_nav)
@@ -127,13 +121,13 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		if (response.o.t_date)
 			css += "td[id *= 'dateBox'] { display: none !important; }\n";
 		if (response.o.t_printI)
-			css += ".mg-print-img { display: none !important; }\n";
+			css += ".mg-print-img, #mg-print { display: none !important; }\n";
 		if (response.o.t_printL) {
-			css += ".mg-print { display: none !important; }\n";
+			css += ".mg-print, #mg-print { display: none !important; }\n";
 			css += ".mg-print-img { margin-right: 10px !important; }\n";
 		}
 		if (response.o.t_refresh)
-			css += ".mg-refresh { display: none !important; }\n";
+			css += ".mg-refresh, #mg-refresh { display: none !important; }\n";
 		if (response.o.t_v1)
 			css += "#topRightNavigation > .button-strip > .goog-imageless-button:first-child { display: none !important; }\n";
 		if (response.o.t_v2)
@@ -146,9 +140,10 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += "#topRightNavigation > .button-strip > .goog-imageless-button:nth-child(5) { display: none !important; }\n";		
 	// NAVIGATION
 		if (response.o.nav) {
-			css += "#navToggle { z-index: 999; background-color: rgba(0,0,0,0); width: 10px !important; cursor: pointer !important; }\n";
+			css += "#navToggle { display: inline-block; position: absolute; top: 0; left: 0; min-height: 400px; z-index: 999; background-color: rgba(0,0,0,0); width: 10px !important; cursor: pointer !important; }\n";
 			css += "#navToggle:hover { background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,0))); }\n";
-			css += "td[min ~= 'hideN'] { width: 0px !important; opacity: 0 !important; overflow: hidden !important; }\n";
+			css += "[min ~= 'hideN'] { width: 0px !important; opacity: 0 !important; overflow: hidden !important; }\n";
+			css += "[min ~= 'hideN'] + div #mainbody { margin-left: 10px !important; }\n";
 			css += "#sidebar:not([min ~= 'hideN']) { width: " + (parseInt(response.o.navW) + 10) + "px !important; }\n";
 			css += "#sidebar, #sidebar[min ~= 'hideN'] + #mainnav { border-left: 10px solid #fff; }\n";
 			//css += "#sidebar, #nav { width: " + response.o.navW + "px; opacity: 1; }\n";
@@ -158,13 +153,13 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 			css += "#dp_0 + .nb_0 { border-top: 0 !important; }\n";
 		}
 		if (response.o.n_mine)
-			css += "#dp_0 + .nb_0 { display: none !important; }\n";
+			css += "#dp_0 + .nb_0, #clst_my, #lhscalinner_my { display: none !important; }\n";
 		if (response.o.n_linksM)
 			css += "#calendars_my + .sn-link-container { display: none !important; }\n";
 		if (response.o.n_other)
-			css += "#dp_0 + .nb_0 + .nb_0 { display: none !important; }\n";
+			css += "#dp_0 + .nb_0 + .nb_0, #clst_fav, #lhscalinner_fav  { display: none !important; }\n";
 		if (response.o.n_add)
-			css += "#dp_0 + .nb_0 + .nb_0 #searchAddCalBox { display: none !important; }\n";
+			css += "#searchAddCalBox { display: none !important; }\n";
 		if (response.o.n_linksO)
 			css += "#calendars_fav + .sn-link-container { display: none !important; }\n";
 	// CUSTOM

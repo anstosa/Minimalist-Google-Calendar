@@ -1,6 +1,6 @@
 {
 	"name": "Minimalist for Google Calendar™",
-	"version": "0.6.11",
+	"version": "0.7.0",
 	"description": "Individually hide almost 50 interface elements and add custom logos, and more...",
 	"icons": {
          "16": "img/icons/icon16.png",
@@ -22,7 +22,6 @@
 		"js": [ "js/voice.js" ],
 		"all_frames": true
 	} ],
-	"converted_from_user_script": true,
 	"options_page": "options.html",	
 	"permissions": [
 		"tabs",

@@ -99,7 +99,12 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 		}
 		if (response.o.header && !f_headerToggle) {
 			console.log("MINIMALIST GOOGLE CALENDAR: hiding header and adding toggle...");
-			var head = document.getElementById("topBar");
+			var head;
+			if (document.getElementById("topBar")) {
+				head = document.getElementById("topBar");
+			} else {
+				head = document.getElementById("vr-proto-header");
+			}
 			try {
 				minimalist(head, false, "hideH");
 				if (!response.o.gbarH) {
@@ -370,6 +375,12 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 	}
 
 	function toggleHeader(){
+		var head;
+		if (document.getElementById("topBar")) {
+			head = document.getElementById("topBar");
+		} else {
+			head = document.getElementById("vr-proto-header");
+		}
 		if (response.o.gbarH && !response.o.header) {
 			if (hiddenG) {
 				minimalist(document.getElementsByClassName('onegpad')[0], true, "hideG");
@@ -381,19 +392,19 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 		} else if (response.o.gbarH && response.o.header) {
 			if (hiddenH) {
 				minimalist(document.getElementsByClassName('onegpad')[0], true, "hideG");
-				minimalist(document.getElementById('topBar'), true, "hideH");
+				minimalist(head, true, "hideH");
 				hiddenH = false;
 			} else {
 				minimalist(document.getElementsByClassName('onegpad')[0], false, "hideG");
-				minimalist(document.getElementById('topBar'), false, "hideH");
+				minimalist(head, false, "hideH");
 				hiddenH = true;
 			}
 		} else {
 			if (hiddenH){
-				minimalist(document.getElementById('topBar'), true, "hideH");
+				minimalist(head, true, "hideH");
 				hiddenH = false;
 			} else {
-				minimalist(document.getElementById('topBar'), false, "hideH");
+				minimalist(head, false, "hideH");
 				hiddenH = true;
 			}
 		}
