@@ -103,7 +103,7 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 			if (document.getElementById("topBar")) {
 				head = document.getElementById("topBar");
 			} else {
-				head = document.getElementById("vr-proto-header");
+				head = document.getElementById("vr-header");
 			}
 			try {
 				minimalist(head, false, "hideH");
@@ -379,7 +379,7 @@ chrome.extension.sendRequest({elements: "o"}, function(response) {
 		if (document.getElementById("topBar")) {
 			head = document.getElementById("topBar");
 		} else {
-			head = document.getElementById("vr-proto-header");
+			head = document.getElementById("vr-header");
 		}
 		if (response.o.gbarH && !response.o.header) {
 			if (hiddenG) {
