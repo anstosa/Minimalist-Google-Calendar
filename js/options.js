@@ -42,6 +42,7 @@ $(function(){
 					$("#Hweight").val(o.Hweight);
 				if ((o.Hsize != null) && (o.Hsize != ""))
 					$("#Hsize").val(o.Hsize);
+			$("#hideHours").attr('checked', o.hideHours);
 			$("#BTN").attr('checked', o.BTN);
 				if ((o.BTNcolor != null) && (o.BTNcolor != ""))
 					$("#BTNcolorSUB").attr("style","background-color:" + o.BTNcolor + ";");
@@ -186,6 +187,7 @@ $(function(){
 					"Hcolor":localStorage["Hcolor"],
 					"Hweight":$("#Hweight").val(),
 					"Hsize":$("#Hsize").val(),
+				"hideHours":$("#hideHours").attr('checked'),
 				"BTN":$("#BTN").attr('checked'),
 					"BTNcolor":localStorage["BTNcolor"],
 					"BTNborder":localStorage["BTNborder"],

@@ -51,6 +51,8 @@ chrome.extension.sendRequest({elements: 'o'}, function(response) {
 		}
 		if (response.o.hours)
 			css += ".tg-time-pri { font-size: " + response.o.Hsize + "; font-weight: " + response.o.Hweight + "; color: " + response.o.Hcolor + "; }\n"
+		if (response.o.hideHours)
+			css += ".tg-mainwrapper { margin-top:-338px !important;}\n"; // hide hours 0 am to 8 am
 		if (response.o.corners)
 			css += "input, textarea { -webkit-border-radius: 5px; }\n";
 		if (response.o.trans)
